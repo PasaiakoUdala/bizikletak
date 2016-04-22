@@ -4,22 +4,16 @@ easy_admin:
             class: AppBundle\Entity\Guneak
             label: 'Guneak'
             list:
-                title: 'Guneak %%entity_label%%'
+                title: '%%entity_label%%- mantenimendua'
                 actions:
                     - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }
                     - { name: 'delete', label: '', icon: 'trash' }
-                fields: ['id','izena', 'helbidea', 'ordutegia', 'barrutia', 'kudeatzailea']
-#                    - 'id'
-#                    - { property: 'izena', label: 'Kodea' }
+                fields: ['id','izena', 'helbidea', 'ordutegia', 'barruti', 'kudeatzailea']
 
             show:
-                fields: ['id','izena', 'helbidea', 'ordutegia', 'barrutia', 'kudeatzailea']
-#                fields:
-#                    - 'id'
-#                    - { property: 'izena', label: 'Label', css_class: 'large' }
-#                    - { property: 'parent', label: 'Parent category' }
-#                    - 'products'
+                fields: ['id','izena', 'helbidea', 'ordutegia', 'barruti', 'kudeatzailea']
+
             form:
                 fields:
                     - { property: 'izena', label: 'Izena', css_class: 'col-sm-12 large' }

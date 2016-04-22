@@ -9,18 +9,26 @@ easy_admin:
                     - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }
                     - { name: 'delete', label: '', icon: 'trash' }
-                fields:
-                    - 'id'
-                    - { property: 'izena', label: 'Kodea' }
-#                    - { property: 'parent', label: 'Parent category' }
-#                    - 'products'
-            show:
-                fields:
-                    - 'id'
-                    - { property: 'izena', label: 'Label', css_class: 'large' }
-#                    - { property: 'parent', label: 'Parent category' }
-#                    - 'products'
+                fields: ['izena','nan','bazkidea','urtekoa','ordainketa','pasaitarra','alokairua','aparkalekua','sinatuta']
+
             form:
                 fields:
-                    - { property: 'izena', label: 'Label', css_class: 'col-sm-12 large' }
-#                    - { property: 'parent', type_options: { placeholder: 'Select a category...' } }
+                    - { property: 'izena', label: 'Izena', css_class: 'col-sm-12 large' }
+                    - { property: 'nan', label: 'N.A.N.', css_class: 'col-sm-12 large' }
+                    - { property: 'mugikorra', label: 'Mugikorra', css_class: 'col-sm-6 large' }
+                    - { property: 'email', label: 'Email', css_class: 'col-sm-6 large' }
+
+                    - { property: 'bazkidea', label: 'Bazkidea', css_class: 'col-sm-3' }
+                    - { property: 'urtekoa', label: 'Urtekoa', css_class: 'col-sm-3' }
+                    - { property: 'ordainketa', label: 'Ordainketa', css_class: 'col-sm-3' }
+                    - { property: 'pasaitarra', label: 'Pasaitarra', css_class: 'col-sm-3' }
+                    - { property: 'alokairua', label: 'Alokairua', css_class: 'col-sm-3' }
+                    - { property: 'aparkalekua', label: 'Aparkalekua', css_class: 'col-sm-3' }
+                    - { property: 'sinatuta', label: 'Sinatuta', css_class: 'col-sm-3' }
+
+                    - { property: 'kopurua', label: 'Kopurua', css_class: 'col-sm-4 large' }
+                    - { property: 'oharrak', label: 'Oharrak', css_class: 'col-sm-12 large' }
+                    - { property: 'zigorrak', label: 'Zigorrak', css_class: 'col-sm-12 large' }
+
+
+

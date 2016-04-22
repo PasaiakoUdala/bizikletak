@@ -2,7 +2,7 @@ easy_admin:
     site_name: 'Bizikletak'
     design:
         form_theme:   'vertical'
-        color_scheme: 'dark'
+        color_scheme: 'light'
         assets:
             css:
                 - '/bundles/app/stylesheets/demo.css'

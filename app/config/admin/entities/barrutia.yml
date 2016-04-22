@@ -4,7 +4,7 @@ easy_admin:
             class: AppBundle\Entity\Barrutia
             label: 'Barrutia'
             list:
-                title: 'Barrutia %%entity_label%%'
+                title: '%%entity_label%%k'
                 actions:
                     - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }

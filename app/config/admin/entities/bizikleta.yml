@@ -4,14 +4,13 @@ easy_admin:
             class: AppBundle\Entity\Bizikleta
             label: 'Bizikletak'
             list:
-                title: 'Bizikletak %%entity_label%%'
+                title: '%%entity_label%%'
                 actions:
                     - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }
                     - { name: 'delete', label: '', icon: 'trash' }
-                fields:
-                    - 'id'
-                    - { property: 'kodea', label: 'Kodea' }
+                fields: ['id','kodea','erregistroa','bastidorea','gunea']
+
             form:
                 fields:
                     - { property: 'kodea', label: 'Kodea', css_class: 'col-sm-12 large' }
