@@ -21,11 +21,11 @@ easy_admin:
 #                    - { property: 'parent', label: 'Parent category' }
 #                    - 'products'
             form:
-#                fields: ['id','izena', 'helbidea', 'ordutegia', 'barrutia', 'kudeatzailea', 'barrutia']
                 fields:
                     - { property: 'izena', label: 'Izena', css_class: 'col-sm-12 large' }
                     - { property: 'helbidea', label: 'Helbidea', css_class: 'col-sm-12 large' }
-#                    - { property: 'ordugetia', label: 'Ordutegia', css_class: 'col-sm-12 large' }
-                    - barrutia
+                    - ordutegia
+                    - { property: 'barruti', label: 'Barrutia' , type_options: { placeholder: 'Aukeratu barrutia...' } }
+                    - kudeatzailea
 
 
