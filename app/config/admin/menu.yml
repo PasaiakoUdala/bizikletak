@@ -1,0 +1,19 @@
+easy_admin:
+    design:
+        menu:
+            - label: 'Bizikletak'
+              icon: 'shopping-basket'
+              children:
+                  - { entity: 'Bizikleta', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }, default: true }
+#                  - { entity: 'Guneak', icon: 'tags', label: 'menu.category' }
+
+            - label: 'Guneak'
+              icon: 'shopping-basket'
+              children:
+                  - { entity: 'Guneak', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }, default: true }
+#            - { label: 'menu.customer', entity: 'User', icon: 'users' }
+#            - { label: 'menu.purchase', entity: 'Purchase', icon: 'credit-card', params: { sortField: 'deliveryDate' } }
+#            - { label: 'menu.about' }
+            - { label: 'Hasiera', url: 'https://github.com/javiereguiluz/EasyAdminBundle', icon: 'home', target: '_blank' }
+            - { label: 'esteka', url: 'https://github.com/javiereguiluz/EasyAdminBundle#getting-started-guide', icon: 'book', target: '_blank' }
+            - { label: 'issues', url: 'https://github.com/javiereguiluz/EasyAdminBundle/issues', icon: 'github', target: '_blank' }
