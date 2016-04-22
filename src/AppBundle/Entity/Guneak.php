@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bundle\FrameworkBundle\Tests\Functional\Bundle\TestBundle\Controller\Bar;
 
 /**
  * Guneak
@@ -69,6 +70,21 @@ class Guneak
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
+
+    /**
+     *
+     * Erlazioak
+     *
+     */
+
+    /**
+     * Gunea.
+     *
+     * @var Barrutia
+     * @ORM\ManyToOne(targetEntity="Barrutia", inversedBy="guneak")
+     */
+    protected $barruti;
+
 
     public function __construct()
     {
@@ -258,5 +274,29 @@ class Guneak
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set barruti
+     *
+     * @param \AppBundle\Entity\Barrutia $barruti
+     *
+     * @return Guneak
+     */
+    public function setBarruti(\AppBundle\Entity\Barrutia $barruti = null)
+    {
+        $this->barruti = $barruti;
+
+        return $this;
+    }
+
+    /**
+     * Get barruti
+     *
+     * @return \AppBundle\Entity\Barrutia
+     */
+    public function getBarruti()
+    {
+        return $this->barruti;
     }
 }

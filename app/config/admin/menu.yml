@@ -1,14 +1,25 @@
 easy_admin:
+    formats:
+        datetime: 'Y/m/d h:i A e'
     design:
         menu:
             - label: 'Bizikletak'
-              icon: 'shopping-basket'
+              icon: 'bicycle'
               children:
                   - { entity: 'Bizikleta', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }, default: true }
 #                  - { entity: 'Guneak', icon: 'tags', label: 'menu.category' }
 
+            - label: 'Barrutiak'
+              icon: 'university'
+              children:
+                  - { entity: 'Barrutia', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }, default: true }
+
             - label: 'Guneak'
-              icon: 'shopping-basket'
+              icon: 'university'
+              children:
+                  - { entity: 'Guneak', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }, default: true }
+            - label: 'Bezeroak'
+              icon: 'user'
               children:
                   - { entity: 'Guneak', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }, default: true }
 #            - { label: 'menu.customer', entity: 'User', icon: 'users' }
@@ -17,3 +28,4 @@ easy_admin:
             - { label: 'Hasiera', url: 'https://github.com/javiereguiluz/EasyAdminBundle', icon: 'home', target: '_blank' }
             - { label: 'esteka', url: 'https://github.com/javiereguiluz/EasyAdminBundle#getting-started-guide', icon: 'book', target: '_blank' }
             - { label: 'issues', url: 'https://github.com/javiereguiluz/EasyAdminBundle/issues', icon: 'github', target: '_blank' }
+            - { label: 'Search', url: 'https://google.com' }
