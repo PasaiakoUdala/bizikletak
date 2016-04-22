@@ -12,16 +12,11 @@ easy_admin:
                 fields:
                     - 'id'
                     - { property: 'kodea', label: 'Kodea' }
-#                    - { property: 'parent', label: 'Parent category' }
-#                    - 'products'
-            show:
-                fields:
-                    - 'id'
-                    - { property: 'kodea', label: 'Label', css_class: 'large' }
-#                    - { property: 'parent', label: 'Parent category' }
-#                    - 'products'
             form:
                 fields:
-                    - { property: 'kodea', label: 'Label', css_class: 'col-sm-12 large' }
+                    - { property: 'kodea', label: 'Kodea', css_class: 'col-sm-12 large' }
+                    - { property: 'erregistroa', label: 'Erregistroa', css_class: 'col-sm-12 large' }
+                    - { property: 'bastidorea', label: 'Bastidorea', css_class: 'col-sm-12 large' }
+                    - { property: 'ezaugarriak', label: 'Ezaugarriak', css_class: 'col-sm-12 large' }
                     - { property: 'oharrak', type: 'ckeditor' }
-#                    - { property: 'parent', type_options: { placeholder: 'Select a category...' } }
+                    - { property: 'gunea', label: 'Gunea' , type_options: { placeholder: 'Aukeratu gunea...' } }

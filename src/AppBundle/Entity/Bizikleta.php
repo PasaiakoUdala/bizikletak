@@ -70,6 +70,21 @@ class Bizikleta
      */
     private $updatedAt;
 
+    /**
+     *
+     * Erlazioak
+     *
+     */
+
+    /**
+     * Gunea.
+     *
+     * @var Guneak
+     * @ORM\ManyToOne(targetEntity="Guneak", inversedBy="bizikletak")
+     */
+    protected $gunea;
+
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -281,5 +296,29 @@ class Bizikleta
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set gunea
+     *
+     * @param \AppBundle\Entity\Guneak $gunea
+     *
+     * @return Bizikleta
+     */
+    public function setGunea(\AppBundle\Entity\Guneak $gunea = null)
+    {
+        $this->gunea = $gunea;
+
+        return $this;
+    }
+
+    /**
+     * Get gunea
+     *
+     * @return \AppBundle\Entity\Guneak
+     */
+    public function getGunea()
+    {
+        return $this->gunea;
     }
 }

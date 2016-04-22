@@ -78,12 +78,20 @@ class Guneak
      */
 
     /**
-     * Gunea.
+     * Barrutia.
      *
      * @var Barrutia
      * @ORM\ManyToOne(targetEntity="Barrutia", inversedBy="guneak")
      */
     protected $barruti;
+
+    /**
+     * Bizikletak.
+     *
+     * @var Bizikleta
+     * @ORM\ManyToOne(targetEntity="Bizikleta", inversedBy="gunea")
+     */
+    protected $bizikletak;
 
 
     public function __construct()
@@ -298,5 +306,29 @@ class Guneak
     public function getBarruti()
     {
         return $this->barruti;
+    }
+
+    /**
+     * Set bizikletak
+     *
+     * @param \AppBundle\Entity\Bizikleta $bizikletak
+     *
+     * @return Guneak
+     */
+    public function setBizikletak(\AppBundle\Entity\Bizikleta $bizikletak = null)
+    {
+        $this->bizikletak = $bizikletak;
+
+        return $this;
+    }
+
+    /**
+     * Get bizikletak
+     *
+     * @return \AppBundle\Entity\Bizikleta
+     */
+    public function getBizikletak()
+    {
+        return $this->bizikletak;
     }
 }

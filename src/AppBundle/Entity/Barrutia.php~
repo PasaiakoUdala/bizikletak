@@ -153,4 +153,38 @@ class Barrutia
     {
         return $this->updatedAt;
     }
+
+    /**
+     * Add guneak
+     *
+     * @param \AppBundle\Entity\Guneak $guneak
+     *
+     * @return Barrutia
+     */
+    public function addGuneak(\AppBundle\Entity\Guneak $guneak)
+    {
+        $this->guneak[] = $guneak;
+
+        return $this;
+    }
+
+    /**
+     * Remove guneak
+     *
+     * @param \AppBundle\Entity\Guneak $guneak
+     */
+    public function removeGuneak(\AppBundle\Entity\Guneak $guneak)
+    {
+        $this->guneak->removeElement($guneak);
+    }
+
+    /**
+     * Get guneak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGuneak()
+    {
+        return $this->guneak;
+    }
 }
