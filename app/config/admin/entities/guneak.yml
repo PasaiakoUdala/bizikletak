@@ -18,6 +18,8 @@ easy_admin:
                 fields:
                     - { property: 'izena', label: 'Izena', css_class: 'col-sm-12 large' }
                     - { property: 'helbidea', label: 'Helbidea', css_class: 'col-sm-12 large' }
+                    - latitude
+                    - longitude
                     - ordutegia
                     - { property: 'barruti', label: 'Barrutia' , type_options: { placeholder: 'Aukeratu barrutia...' } }
                     - kudeatzailea
