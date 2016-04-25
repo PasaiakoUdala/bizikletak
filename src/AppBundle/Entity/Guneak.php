@@ -58,6 +58,11 @@ class Guneak
     private $kudeatzailea;
 
     /**
+     * @var 
+     */
+
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
