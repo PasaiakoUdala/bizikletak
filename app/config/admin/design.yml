@@ -5,4 +5,7 @@ easy_admin:
         color_scheme: 'light'
         assets:
             css:
-                - '/bundles/app/stylesheets/demo.css'
+#                - '/bundles/app/stylesheets/demo.css'
+            js:
+                - '/bundles/app/js/maplace.min.js'
+

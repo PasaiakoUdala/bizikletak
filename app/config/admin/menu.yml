@@ -3,26 +3,27 @@ easy_admin:
         datetime: 'Y/m/d h:i A e'
     design:
         menu:
+            - { label: 'Maileguak', route: 'maileguak_index' }
             - label: 'Bizikletak'
               icon: 'bicycle'
               children:
                   - { entity: 'Bizikleta', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }, default: true }
-                  - { entity: 'Bizikleta', icon: 'th-list', label: 'Berria', params: { action: 'new' } }
+                  - { entity: 'Bizikleta', icon: 'th-list', label: 'Berria', params: { action: 'new' }}
 
             - label: 'Barrutiak'
               icon: 'university'
               children:
-                  - { entity: 'Barrutia', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }, default: true }
-                  - { entity: 'Barrutia', icon: 'th-list', label: 'Berria', params: { action: 'new' } }
+                  - { entity: 'Barrutia', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' } }
+                  - { entity: 'Barrutia', icon: 'th-list', label: 'Berria', params: { action: 'new' }}
 
             - label: 'Guneak'
               icon: 'map-marker'
               children:
-                  - { entity: 'Guneak', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }, default: true }
-                  - { entity: 'Guneak', icon: 'th-list', label: 'Berria', params: { action: 'new' } }
+                  - { entity: 'Guneak', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }}
+                  - { entity: 'Guneak', icon: 'th-list', label: 'Berria', params: { action: 'new' }}
 
             - label: 'Bezeroak'
               icon: 'user'
               children:
-                  - { entity: 'Bezeroa', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }, default: true }
-                  - { entity: 'Bezeroa', icon: 'th-list', label: 'Berria', params: { action: 'new' } }
+                  - { entity: 'Bezeroa', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }}
+                  - { entity: 'Bezeroa', icon: 'th-list', label: 'Berria', params: { action: 'new' }}

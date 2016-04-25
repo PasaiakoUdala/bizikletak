@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
-</html>
+{% extends '@EasyAdmin/default/layout.html.twig' %}
+
+{% block navigation_items %}
+    {{ parent() }}
+    <li {{ app.request.attributes.get('_route') == 'maileguak_index' ? 'class="active"' : '' }}>
+        <a href="{{ path('maileguak_index') }}">Maileguak</a>
+    </li>
+{% endblock %}
