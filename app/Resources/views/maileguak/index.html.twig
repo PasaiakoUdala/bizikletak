@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block main %}
+{% block body %}
     <h1>Maileguak list</h1>
 
     <table>
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Fetxa</th>
+                <th>Fetxa_hasi</th>
+                <th>Fetxa_amaitu</th>
+                <th>Erabilera</th>
                 <th>Createdat</th>
                 <th>Updatedat</th>
                 <th>Actions</th>
@@ -17,7 +19,9 @@
         {% for maileguak in maileguaks %}
             <tr>
                 <td><a href="{{ path('maileguak_show', { 'id': maileguak.id }) }}">{{ maileguak.id }}</a></td>
-                <td>{% if maileguak.fetxa %}{{ maileguak.fetxa|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if maileguak.fetxahasi %}{{ maileguak.fetxahasi|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if maileguak.fetxaamaitu %}{{ maileguak.fetxaamaitu|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ maileguak.erabilera }}</td>
                 <td>{% if maileguak.createdAt %}{{ maileguak.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{% if maileguak.updatedAt %}{{ maileguak.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>

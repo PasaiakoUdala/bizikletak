@@ -71,9 +71,11 @@ class Bizikleta
     private $updatedAt;
 
     /**
-     *
-     * Erlazioak
-     *
+     * ************************************************************************************************************************************************************************
+     * ************************************************************************************************************************************************************************
+     * ***** ERLAZIOAK
+     * ************************************************************************************************************************************************************************
+     * ************************************************************************************************************************************************************************
      */
 
     /**
@@ -83,6 +85,20 @@ class Bizikleta
      * @ORM\ManyToOne(targetEntity="Guneak", inversedBy="bizikletak")
      */
     protected $gunea;
+
+    /**
+     * @var Maileguak
+     * @ORM\OneToMany(targetEntity="Maileguak", mappedBy="bizikleta", cascade={"remove"})
+     */
+    protected $maileguak;
+
+    /**
+     * ************************************************************************************************************************************************************************
+     * ************************************************************************************************************************************************************************
+     * ***** ERLAZIOAK
+     * ************************************************************************************************************************************************************************
+     * ************************************************************************************************************************************************************************
+     */
 
 
     public function __construct()
@@ -320,5 +336,39 @@ class Bizikleta
     public function getGunea()
     {
         return $this->gunea;
+    }
+
+    /**
+     * Add maileguak
+     *
+     * @param \AppBundle\Entity\Maileguak $maileguak
+     *
+     * @return Bizikleta
+     */
+    public function addMaileguak(\AppBundle\Entity\Maileguak $maileguak)
+    {
+        $this->maileguak[] = $maileguak;
+
+        return $this;
+    }
+
+    /**
+     * Remove maileguak
+     *
+     * @param \AppBundle\Entity\Maileguak $maileguak
+     */
+    public function removeMaileguak(\AppBundle\Entity\Maileguak $maileguak)
+    {
+        $this->maileguak->removeElement($maileguak);
+    }
+
+    /**
+     * Get maileguak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMaileguak()
+    {
+        return $this->maileguak;
     }
 }

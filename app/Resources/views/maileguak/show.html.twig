@@ -10,8 +10,16 @@
                 <td>{{ maileguak.id }}</td>
             </tr>
             <tr>
-                <th>Fetxa</th>
-                <td>{% if maileguak.fetxa %}{{ maileguak.fetxa|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <th>Fetxa_hasi</th>
+                <td>{% if maileguak.fetxahasi %}{{ maileguak.fetxahasi|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fetxa_amaitu</th>
+                <td>{% if maileguak.fetxaamaitu %}{{ maileguak.fetxaamaitu|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Erabilera</th>
+                <td>{{ maileguak.erabilera }}</td>
             </tr>
             <tr>
                 <th>Createdat</th>

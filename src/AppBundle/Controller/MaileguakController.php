@@ -19,19 +19,47 @@ class MaileguakController extends Controller
 
     /**
      *  Mailegu menua
-     * 
+     *
      * @Route("/", name="maileguak_menu")
-     * @Method("GET")     *
+     * @Method("GET")
      */
     public function menuAction()
     {
         return $this->render('maileguak/menua.html.twig');
     }
-    
+
+    /**
+     * MAILEGUA GAUZATU
+     *
+     * @Route("/hasi", name="maileguak_hasi")
+     * @Method({"GET", "POST"})
+     */
+    public function hasiAction(Request $request)
+    {
+        $maileguak = new Maileguak();
+        $form = $this->createForm('AppBundle\Form\MaileguakHasiType', $maileguak);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($maileguak);
+            $em->flush();
+
+            return $this->redirectToRoute('maileguak_menu');
+        }
+
+        return $this->render('maileguak/hasi.html.twig', array(
+            'maileguak' => $maileguak,
+            'form' => $form->createView(),
+        ));
+    }
+
+
+
     /**
      * Lists all Maileguak entities.
      *
-     * @Route("/zerrenda", name="maileguak_index")
+     * @Route("/", name="maileguak_index")
      * @Method("GET")
      */
     public function indexAction()

@@ -87,26 +87,44 @@ class Guneak
     private $updatedAt;
 
     /**
-     *
-     * Erlazioak
-     *
+     * ************************************************************************************************************************************************************************
+     * ************************************************************************************************************************************************************************
+     * ***** ERLAZIOAK
+     * ************************************************************************************************************************************************************************
+     * ************************************************************************************************************************************************************************
      */
 
     /**
-     * Barrutia.
-     *
      * @var Barrutia
      * @ORM\ManyToOne(targetEntity="Barrutia", inversedBy="guneak")
      */
     protected $barruti;
 
     /**
-     * Bizikletak.
-     *
      * @var Bizikleta
-     * @ORM\OneToMany(targetEntity="Bizikleta", mappedBy="gunea", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Bizikleta", mappedBy="guneahasi", cascade={"remove"})
      */
-    protected $bizikletak;
+    protected $bizikletakhasi;
+
+    /**
+     * @var Bizikleta
+     * @ORM\OneToMany(targetEntity="Bizikleta", mappedBy="guneaamaitu", cascade={"remove"})
+     */
+    protected $bizikletakamaitu;
+
+    /**
+     * @var Maileguak
+     * @ORM\OneToMany(targetEntity="Maileguak", mappedBy="gunea", cascade={"remove"})
+     */
+    protected $maileguak;
+
+    /**
+     * ************************************************************************************************************************************************************************
+     * ************************************************************************************************************************************************************************
+     * ***** ERLAZIOAK
+     * ************************************************************************************************************************************************************************
+     * ************************************************************************************************************************************************************************
+     */
 
 
     public function __construct()
@@ -394,5 +412,131 @@ class Guneak
     public function getBizikletak()
     {
         return $this->bizikletak;
+    }
+
+    /**
+     * Add bizikletak
+     *
+     * @param \AppBundle\Entity\Bizikleta $bizikletak
+     *
+     * @return Guneak
+     */
+    public function addBizikletak(\AppBundle\Entity\Bizikleta $bizikletak)
+    {
+        $this->bizikletak[] = $bizikletak;
+
+        return $this;
+    }
+
+    /**
+     * Remove bizikletak
+     *
+     * @param \AppBundle\Entity\Bizikleta $bizikletak
+     */
+    public function removeBizikletak(\AppBundle\Entity\Bizikleta $bizikletak)
+    {
+        $this->bizikletak->removeElement($bizikletak);
+    }
+
+    /**
+     * Add maileguak
+     *
+     * @param \AppBundle\Entity\Maileguak $maileguak
+     *
+     * @return Guneak
+     */
+    public function addMaileguak(\AppBundle\Entity\Maileguak $maileguak)
+    {
+        $this->maileguak[] = $maileguak;
+
+        return $this;
+    }
+
+    /**
+     * Remove maileguak
+     *
+     * @param \AppBundle\Entity\Maileguak $maileguak
+     */
+    public function removeMaileguak(\AppBundle\Entity\Maileguak $maileguak)
+    {
+        $this->maileguak->removeElement($maileguak);
+    }
+
+    /**
+     * Get maileguak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMaileguak()
+    {
+        return $this->maileguak;
+    }
+
+    /**
+     * Add bizikletakhasi
+     *
+     * @param \AppBundle\Entity\Bizikleta $bizikletakhasi
+     *
+     * @return Guneak
+     */
+    public function addBizikletakhasi(\AppBundle\Entity\Bizikleta $bizikletakhasi)
+    {
+        $this->bizikletakhasi[] = $bizikletakhasi;
+
+        return $this;
+    }
+
+    /**
+     * Remove bizikletakhasi
+     *
+     * @param \AppBundle\Entity\Bizikleta $bizikletakhasi
+     */
+    public function removeBizikletakhasi(\AppBundle\Entity\Bizikleta $bizikletakhasi)
+    {
+        $this->bizikletakhasi->removeElement($bizikletakhasi);
+    }
+
+    /**
+     * Get bizikletakhasi
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBizikletakhasi()
+    {
+        return $this->bizikletakhasi;
+    }
+
+    /**
+     * Add bizikletakamaitu
+     *
+     * @param \AppBundle\Entity\Bizikleta $bizikletakamaitu
+     *
+     * @return Guneak
+     */
+    public function addBizikletakamaitu(\AppBundle\Entity\Bizikleta $bizikletakamaitu)
+    {
+        $this->bizikletakamaitu[] = $bizikletakamaitu;
+
+        return $this;
+    }
+
+    /**
+     * Remove bizikletakamaitu
+     *
+     * @param \AppBundle\Entity\Bizikleta $bizikletakamaitu
+     */
+    public function removeBizikletakamaitu(\AppBundle\Entity\Bizikleta $bizikletakamaitu)
+    {
+        $this->bizikletakamaitu->removeElement($bizikletakamaitu);
+    }
+
+    /**
+     * Get bizikletakamaitu
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBizikletakamaitu()
+    {
+        return $this->bizikletakamaitu;
     }
 }

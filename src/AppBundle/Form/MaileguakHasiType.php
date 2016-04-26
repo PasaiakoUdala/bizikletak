@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
-class MaileguakType extends AbstractType
+class MaileguakHasiType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -21,15 +21,9 @@ class MaileguakType extends AbstractType
                     'format' => 'yyyy-MM-dd  HH:mm'
                 )
             )
-            ->add('fetxa_amaitu',DatetimeType::class, array(
-                    'widget' => 'single_text',
-                    'format' => 'yyyy-MM-dd  HH:mm'
-                )
-            )
             ->add('erabilera')
             ->add('bezeroa')
             ->add('guneahasi')
-            ->add('guneaamaitu')
             ->add('bizikleta')
         ;
     }
