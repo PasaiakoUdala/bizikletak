@@ -46,6 +46,9 @@ class MaileguakController extends Controller
             $em->flush();
 
             return $this->redirectToRoute('maileguak_menu');
+        } else {
+            $string = (string) $form->getErrors(true, false);
+            dump($form->getErrors(true, false));
         }
 
         return $this->render('maileguak/hasi.html.twig', array(

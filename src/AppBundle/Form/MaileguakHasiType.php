@@ -19,7 +19,8 @@ class MaileguakHasiType extends AbstractType
             ->add('bezeroa',null, array('label' => 'form.name','required' => true, 'placeholder' => 'Aukeratu Bezeroa'))
             ->add('guneahasi',null, array('label' => 'form.name','required' => true, 'placeholder' => 'Aukeratu gunea'))
             ->add('bizikleta',null, array('label' => 'form.name','required' => true, 'placeholder' => 'Aukeratu Bizikleta'))
-            ->add('fetxa_hasi',DatetimeType::class, array('widget' => 'single_text','format' => 'yyyy-MM-dd  HH:mm'))
+//            ->add('fetxa_hasi',DatetimeType::class, array('widget' => 'single_text' ,'format' => 'yyyy-MM-dd  HH:mm'))
+            ->add('fetxa_hasi',DatetimeType::class, array('widget' => 'single_text'))
             ->add('erabilera')
         ;
     }
