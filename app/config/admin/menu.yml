@@ -3,7 +3,7 @@ easy_admin:
         datetime: 'Y/m/d h:i A e'
     design:
         menu:
-            - { label: 'Maileguak', route: 'maileguak_index' }
+            - { label: 'Maileguak', route: 'maileguak_menu' }
             - label: 'Bizikletak'
               icon: 'bicycle'
               children:

@@ -104,7 +104,7 @@ class Guneak
      * Bizikletak.
      *
      * @var Bizikleta
-     * @ORM\ManyToOne(targetEntity="Bizikleta", inversedBy="gunea")
+     * @ORM\OneToMany(targetEntity="Bizikleta", mappedBy="gunea", cascade={"remove"})
      */
     protected $bizikletak;
 

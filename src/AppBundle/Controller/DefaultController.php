@@ -15,7 +15,11 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        return $this->render('default/index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $guneak = $em->getRepository('AppBundle:Guneak')->findAll();
+
+        return $this->render('default/index.html.twig', array('guneak' => $guneak));
     }
 
     /**

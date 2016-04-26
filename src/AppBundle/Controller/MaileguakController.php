@@ -16,10 +16,22 @@ use AppBundle\Form\MaileguakType;
  */
 class MaileguakController extends Controller
 {
+
+    /**
+     *  Mailegu menua
+     * 
+     * @Route("/", name="maileguak_menu")
+     * @Method("GET")     *
+     */
+    public function menuAction()
+    {
+        return $this->render('maileguak/menua.html.twig');
+    }
+    
     /**
      * Lists all Maileguak entities.
      *
-     * @Route("/", name="maileguak_index")
+     * @Route("/zerrenda", name="maileguak_index")
      * @Method("GET")
      */
     public function indexAction()
