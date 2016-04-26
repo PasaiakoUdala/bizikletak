@@ -16,15 +16,11 @@ class MaileguakHasiType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fetxa_hasi',DatetimeType::class, array(
-                    'widget' => 'single_text',
-                    'format' => 'yyyy-MM-dd  HH:mm'
-                )
-            )
+            ->add('bezeroa',null, array('label' => 'form.name','required' => true, 'placeholder' => 'Aukeratu Bezeroa'))
+            ->add('guneahasi',null, array('label' => 'form.name','required' => true, 'placeholder' => 'Aukeratu gunea'))
+            ->add('bizikleta',null, array('label' => 'form.name','required' => true, 'placeholder' => 'Aukeratu Bizikleta'))
+            ->add('fetxa_hasi',DatetimeType::class, array('widget' => 'single_text','format' => 'yyyy-MM-dd  HH:mm'))
             ->add('erabilera')
-            ->add('bezeroa')
-            ->add('guneahasi')
-            ->add('bizikleta')
         ;
     }
     

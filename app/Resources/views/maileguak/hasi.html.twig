@@ -36,7 +36,7 @@
                                 <div class="form-group  field-text">
                                     {{ form_label(form.bezeroa, 'Bezeroa', { 'label_attr': {'class': 'control-label'} }) }}
                                     {{ form_errors(form.bezeroa) }}
-                                    {{ form_widget(form.bezeroa, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_widget(form.bezeroa, {'attr': {'class': 'form-control', 'data-widget':'select2'}}) }}
                                 </div>
                             </div>
                             <div class="col-xs-12">
@@ -50,14 +50,14 @@
                                 <div class="form-group  field-text">
                                     {{ form_label(form.fetxa_hasi, 'Eguna eta ordua', { 'label_attr': {'class': 'control-label'} }) }}
                                     {{ form_errors(form.fetxa_hasi) }}
-                                    {{ form_widget(form.fetxa_hasi, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_widget(form.fetxa_hasi, {'attr': {'class': 'form-control', 'placeholder':'yyyy/mm/dd hh:mm:ss Adibidez: 2016/01/06 11:23'}}) }}
                                 </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group  field-text">
                                     {{ form_label(form.guneahasi, 'Hasierako gunea', { 'label_attr': {'class': 'control-label'} }) }}
                                     {{ form_errors(form.guneahasi) }}
-                                    {{ form_widget(form.guneahasi, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_widget(form.guneahasi, {'attr': {'class': 'form-control', 'data-widget':'select2'}}) }}
                                 </div>
                             </div>
                             <div class="col-xs-12">
