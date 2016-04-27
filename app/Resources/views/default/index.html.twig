@@ -73,7 +73,11 @@
 
                                         <div class="col-md-3 col-sm-6 col-xs-12">
                                             <div class="info-box">
-                                                <span class="info-box-icon bg-green"><i class="ion ion-ios-gear-outline">{{ g.bizikletak | length }}</i></span>
+                                                {% if g.bizikletak.count is defined %}
+                                                    <span class="info-box-icon bg-green"><i class="ion ion-ios-gear-outline">{{ g.bizikletak|length }}</i></span>
+                                                {% else %}
+                                                    <span class="info-box-icon bg-green"><i class="ion ion-ios-gear-outline">0</i></span>
+                                                {% endif %}
 
                                                 <div class="info-box-content">
                                                     <span class="info-box-text">{{ g.izena }}</span>
