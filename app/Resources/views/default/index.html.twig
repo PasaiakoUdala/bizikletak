@@ -1,5 +1,21 @@
 {% extends 'base.html.twig' %}
 
+{% block head_stylesheets %}
+    {{ parent() }}
+
+    <link href="{{ asset('bundles/app/css/global.css') }}" rel='stylesheet' type='text/css'/>
+    <link href="{{ asset('bundles/app/css/google-maps.css') }}" rel='stylesheet' type='text/css'/>
+    <link href="{{ asset('bundles/app/css/typo.css') }}" rel='stylesheet' type='text/css'/>
+    <link href="{{ asset('bundles/app/css/colorbox.css') }}" rel='stylesheet' type='text/css'/>
+    <link href="{{ asset('bundles/app/css/social.css') }}" rel='stylesheet' type='text/css'/>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;subset=latin,cyrillic'
+          rel='stylesheet' type='text/css'/>
+    <link href="{{ asset('bundles/app/css/fontello.css') }}" rel='stylesheet' type='text/css'/>
+
+
+{% endblock %}
+
 {% block head_javascript %}
     {{ parent() }}
 
@@ -31,73 +47,105 @@
 
     <div id="wrapper">
         <div id="content-wrapper">
-            <section class="content-header">
-                <h1>
-                    Bizikleta Mailegu Zerbitzua
-                    <small>Kontrol panela</small>
-                </h1>
-                <ol class="breadcrumb">
-                    <li class="active"><a href="#"><i class="fa fa-dashboard"></i> Hasiera</a></liclass>
-                </ol>
-            </section>
-            <section class="content">
+            <div class="pi-header-sticky">
+                <!-- Header row -->
+                <div class="pi-section-w pi-section-white pi-shadow-bottom pi-row-reducible">
+                    <div class="pi-section pi-row-lg">
 
-                <div class="row">
+                        <!-- Logo -->
+                        <div class="pi-row-block pi-row-block-logo">
+                            <a href="http://www.pasaia.net"><img src="{{ asset('bundles/app/img/logo.jpg') }}" alt="Pasaiako Armarria"></a>
+                        </div>
+                        <!-- End logo -->
 
-                    <div class="col-md-12">
-
-                        <div class="box">
-                            <div class="box-header with-border">
-                                {#<h3 class="box-title">Bizikleta guneen informazio eguneratua</h3>#}
-                            </div>
-                            <div class="box-body">
-                                <div class="row">
-                                    <div class="col-md-12">
+                        <!-- Text -->
+                        <div class="pi-row-block pi-row-block-txt pi-hidden-2xs">Pasaiako Udala</div>
+                        <!-- End text -->
 
 
-                                        <div id="controls"></div>
-                                        <div id="gmap" style="height:500px;"></div>
+
+                        <!-- Mobile menu button -->
+                        <div class="pi-row-block pi-pull-right pi-hidden-lg-only pi-hidden-md-only">
+                            <button class="btn pi-btn pi-mobile-menu-toggler" data-target="#pi-main-mobile-menu">
+                                <i class="icon-menu pi-text-center"></i>
+                            </button>
+                        </div>
+                        <!-- End mobile menu button -->
+
+                        <!-- Mobile menu -->
+                        <div id="pi-main-mobile-menu" class="pi-section-menu-mobile-w pi-section-dark">
+                            <div class="pi-section-menu-mobile">
+
+                                <!-- Search form -->
+                                <form class="form-inline pi-search-form-wide ng-pristine ng-valid" role="form">
+                                    <div class="pi-input-with-icon">
+                                        <div class="pi-input-icon"><i class="icon-search-1"></i></div>
+                                        <input type="text" class="form-control pi-input-wide" placeholder="Search..">
                                     </div>
-                                </div>
-                            </div>
-                            <div class="box-footer">
-                                <div class="row">
+                                </form>
+                                <!-- End search form -->
 
-                                    {% set columns = 4 %}
-                                    {% for g in guneak %}
-                                        {% if loop.first or loop.index0 is divisibleby(columns) %}
-                                            <div class="row">
-                                        {% endif %}
 
-                                        <div class="col-md-3 col-sm-6 col-xs-12">
-                                            <div class="info-box">
-                                                {% if g.bizikletak.count is defined %}
-                                                    <span class="info-box-icon bg-green"><i class="ion ion-ios-gear-outline">{{ g.bizikletak|length }}</i></span>
-                                                {% else %}
-                                                    <span class="info-box-icon bg-green"><i class="ion ion-ios-gear-outline">0</i></span>
-                                                {% endif %}
 
-                                                <div class="info-box-content">
-                                                    <span class="info-box-text">{{ g.izena }}</span>
-                                                    <span class="info-box-number">{{ g.ordutegia }}</span>
-                                                </div>
-                                                <!-- /.info-box-content -->
-                                            </div>
-                                            <!-- /.info-box -->
-                                        </div>
-
-                                        {% if loop.last or loop.index is divisibleby(columns) %}
-                                            </div>
-                                        {% endif %}
-                                    {% endfor %}
-
-                                </div>
                             </div>
                         </div>
+                        <!-- End mobile menu -->
+
                     </div>
                 </div>
+                <!-- End header row -->
+            </div>
 
-             </section>
+            <div id="page">
+                <div class="pi-section-w pi-section-base pi-section-base-gradient">
+                    <div class="pi-section pi-titlebar pi-titlebar-breadcrumb-right pi-titlebar-small">
+                        <h1>Bizikleta Mailegu Zerbitzua</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="pi-section-w pi-section-black">
+                <div id="controls"></div>
+                <div id="gmap" style="height:550px;"></div>
+            </div>
+            <div class="pi-section-w pi-border-bottom pi-border-top-light pi-section-dark">
+                <div class="box-footer">
+                    <div class="row">
+
+                        {% set columns = 4 %}
+                        {% for g in guneak %}
+                            {% if loop.first or loop.index0 is divisibleby(columns) %}
+                                <div class="row">
+                            {% endif %}
+
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="info-box">
+                                    {% if g.bizikletak.count is defined %}
+                                        <span class="info-box-icon bg-green"><i class="ion ion-ios-gear-outline">{{ g.bizikletak|length }}</i></span>
+                                    {% else %}
+                                        <span class="info-box-icon bg-green"><i class="ion ion-ios-gear-outline">0</i></span>
+                                    {% endif %}
+
+                                    <div class="info-box-content">
+                                        <span class="info-box-text">{{ g.izena }}</span>
+                                        <span class="info-box-number">{{ g.ordutegia }}</span>
+                                    </div>
+                                    <!-- /.info-box-content -->
+                                </div>
+                                <!-- /.info-box -->
+                            </div>
+
+                            {% if loop.last or loop.index is divisibleby(columns) %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+
+            </div>
+
+
         </div>
     </div>
 
