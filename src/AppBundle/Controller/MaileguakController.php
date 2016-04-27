@@ -213,7 +213,7 @@ class MaileguakController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($maileguak);
+            
             $em->persist($maileguak);
             $em->flush();
 
