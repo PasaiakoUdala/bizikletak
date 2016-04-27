@@ -1,0 +1,238 @@
+{% extends 'base.html.twig' %}
+
+{% block head_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/jquery-ui.min.css') }}">
+    <style>
+        .ui-autocomplete-loading {
+            /*background: white url("/web/bundles/app/img/ui-anim_basic_16x16.gif") right center no-repeat;*/
+            background: white url({{ asset('bundles/app/img/ui-anim_basic_16x16.gif') }}) right center no-repeat;
+        }
+    </style>
+{% endblock %}
+
+{% block main %}
+    <div id="flash-messages">
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-ban"></i> Adi!</h4>
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+    </div>
+    <section class="content-header">
+        <div class="row">
+            <div class="col-sm-5">
+                <h1 class="title">Mailegu berria</h1>
+            </div>
+
+
+        </div>
+    </section>
+
+    <section id="main" class="content">
+        <form action="{{ path('maileguak_bilatu') }}" method="post">
+        <div class="row">
+            <div class="col-sm-12 large">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <i class="fa fa-search"></i>
+                        <h3 class="box-title">Sartu bilaketa datuak</h3>
+                    </div>
+                    <div class="box-body pad">
+                        <div class="row">
+                            <div class="col-sm-12 large">
+                                &nbsp;
+                                <br>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label>Bezeroa</label>
+                                    <input id="txtBezeroa" name="bezeroa" type="text" class="form-control" placeholder="Bezeroa...">
+                                    <input id="txtBezeroa_id" name="bezeroa_id" type="hidden" value="">
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="form-group  field-text">
+                                    <div class="form-group">
+                                        <label>Bizkleta</label>
+                                        <input id="txtBizikleta" name="bizikleta" type="text" class="form-control" placeholder="Bizikleta...">
+                                        <input id="txtBizikleta_id" name="bizikleta_id" type="hidden" value="">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 form-actions" style="width: 100%;">
+                                <div class="form-group">
+                                    <div id="form-actions-row">
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fa fa-search"></i> Bilatu
+                                        </button>
+                                        <a class="btn btn-secondary action-list" href="{{ path('maileguak_menu') }}">Ezeztatu eta itzuli</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        </form>
+    </section>
+
+    {% if maileguak is defined %}
+    <section id="emaitzak" class="content">
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Aukeratu mailegua itzulpena gauzatzeko</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tbody><tr>
+                                <th>ID</th>
+                                <th>Bezeroa</th>
+                                <th>Bizikleta</th>
+                                <th>Fetxa hasi</th>
+                                <th>Gunea hasi</th>
+                                <th>Ekintzak</th>
+                            </tr>
+                            {% for m in maileguak %}
+                                <tr>
+                                    <td>{{ m.id }}</td>
+                                    <td>{{ m.bezeroa.izena }}</td>
+                                    <td>{{ m.bizikleta }}</td>
+                                    <td>{{ m.fetxahasi|date("Y/d/m h:m") }}</td>
+                                    <td>{{ m.guneahasi }}</td>
+                                    <td>
+                                        <form action="{{ path('maileguak_amaitu') }}">
+                                            <input type="hidden" name="id" value="{{ m.id }}">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa fa-search"></i> Itzuli
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+
+    </section>
+    {% endif %}
+{% endblock %}
+
+{% block body_javascript %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/app/js/jquery-ui.min.js') }}"></script>
+    <script>
+        $(function() {
+
+            function log( message ) {
+                $( "<div>" ).text( message ).prependTo( "#log" );
+                $( "#log" ).scrollTop( 0 );
+            }
+
+            $('#txtBezeroa').autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '{{ path('bezeroak_bilatu') }}',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: request,
+                        success: function (data) {
+
+                            response($.map(data, function (value, key) {
+                                return {
+                                    label: value.izena,
+                                    value: value.id
+                                };
+
+                            }));
+                        }
+                    });
+                },
+                minLength: 2,
+                select: function( event, ui ) {
+
+                    $('#txtBezeroa_id').val(ui.item.value);
+                    $('#txtBezeroa').val(ui.item.label);
+                    ui.item.value=ui.item.label;
+                }
+            });
+
+
+            {#$( "#txtBezeroa" ).autocomplete({#}
+                {#source: "{{ path('bezeroak_bilatu') }}",#}
+                {#minLength: 2,#}
+                {#select: function( event, ui ) {#}
+                    {##}
+                    {#log( ui.item ?#}
+                    {#"Selected: " + ui.item.value + " aka " + ui.item.id :#}
+                    {#"Nothing selected, input was " + this.value );#}
+                    {#$('#txtBezeroa_id').val(ui.item.value);#}
+                {#}#}
+            {#});#}
+
+            $('#txtBizikleta').autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '{{ path('bizikletak_bilatu') }}',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: request,
+                        success: function (data) {
+
+                            response($.map(data, function (value, key) {
+                                return {
+                                    label: value.izena,
+                                    value: value.id
+                                };
+
+                            }));
+                        }
+                    });
+                },
+                minLength: 2,
+                select: function( event, ui ) {
+
+                    $('#txtBizikleta_id').val(ui.item.value);
+                    $('#txtBizikleta').val(ui.item.label);
+                    ui.item.value=ui.item.label;
+                }
+            });
+
+
+            {#$( "#txtBizikleta" ).autocomplete({#}
+                {#source: "{{ path('bizikletak_bilatu') }}",#}
+                {#minLength: 2,#}
+                {#select: function( event, ui ) {#}
+                    {#log( ui.item ?#}
+                    {#"Selected: " + ui.item.value + " aka " + ui.item.id :#}
+                    {#"Nothing selected, input was " + this.value );#}
+                    {#$('#txtBizikleta_id').val(ui.item.value);#}
+                {#}#}
+            {#});#}
+
+        });
+    </script>
+
+{% endblock %}

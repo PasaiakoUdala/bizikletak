@@ -4,10 +4,12 @@ namespace AppBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Maileguak;
 use AppBundle\Form\MaileguakType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Maileguak controller.
@@ -29,7 +31,7 @@ class MaileguakController extends Controller
     }
 
     /**
-     * MAILEGUA GAUZATU
+     * MAILEGUA HASI
      *
      * @Route("/hasi", name="maileguak_hasi")
      * @Method({"GET", "POST"})
@@ -57,6 +59,163 @@ class MaileguakController extends Controller
         ));
     }
 
+    /**
+     * MAILEGUA BILATU
+     *
+     * @Route("/bilatu", name="maileguak_bilatu")
+     * @Method({"GET", "POST"})
+     */
+    public function bilatuAction(Request $request)
+    {
+        if ($request->isMethod('POST')) {
+            $bezeroa_id = $request->request->get('bezeroa_id');
+            $bizikleta_id = $request->request->get('bizikleta_id');
+            $em = $this->getDoctrine()->getManager();
+
+            if(isset($bezeroa_id)) {
+                $bezeroa = $em->getRepository('AppBundle:Bezeroa')->findOneById($bezeroa_id);
+            }
+            if(isset($bizikleta_id)) {
+                $bizikleta = $em->getRepository('AppBundle:Bizikleta')->findOneById($bizikleta_id);
+            }
+
+            $repository = $this->getDoctrine()->getRepository('AppBundle:Maileguak');
+
+            if (!isset($bizikleta) and (!isset($bezeroa))) {
+                $request->getSession()
+                    ->getFlashBag()
+                    ->add('notice', 'Ez da aurkitu mailegurik.!')
+                ;
+
+                return $this->render('maileguak/bilatu.html.twig');
+            }
+
+            if ((isset($bizikleta)) and (isset($bezeroa))) {
+                $query = $repository->createQueryBuilder('m')
+                    ->where('m.bezeroa = :bezeroa')
+                    ->andWhere('m.bizikleta = :bizikleta')
+                    ->setParameter('bezeroa', $bezeroa)
+                    ->setParameter('bizikleta', $bizikleta)
+                    ->getQuery();
+            } elseif (isset($bizikleta)) {
+                $query = $repository->createQueryBuilder('m')
+                    ->Where('m.bizikleta = :bizikleta')
+                    ->setParameter('bizikleta', $bizikleta)
+                    ->getQuery();
+            } elseif (isset($bezeroa)) {
+                $query = $repository->createQueryBuilder('m')
+                    ->where('m.bezeroa = :bezeroa')
+                    ->setParameter('bezeroa', $bezeroa)
+                    ->getQuery();
+            }
+
+            $maileguak = $query->getResult();
+
+            return $this->render('maileguak/bilatu.html.twig', array(
+                'maileguak' => $maileguak
+            ));
+        } else {
+            return $this->render('maileguak/bilatu.html.twig');
+        }
+    }
+
+
+    /**
+     * @Route("/bezeroautocomplete", name="bezeroak_bilatu")
+     */
+    public function autocompleteAction(Request $request)
+    {
+        $names = array();
+        $term = trim(strip_tags($request->get('term')));
+
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('AppBundle:Bezeroa')->createQueryBuilder('c')
+            ->where('c.izena LIKE :izena')
+            ->orWhere('c.nan LIKE :nan')
+            ->setParameter('izena', '%'.$term.'%')
+            ->setParameter('nan', '%'.$term.'%')
+            ->getQuery()
+            ->getResult();
+
+        $names = array();
+        foreach ($entities as $entity) {
+            $names[] = array(
+                'id' => $entity->getId(),
+                'izena' => $entity->getIzena()
+            );
+        }
+
+        $response = new JsonResponse();
+        $response->setData($names);
+
+        return $response;
+    }
+
+    /**
+     * @Route("/bizikletaautocomplete", name="bizikletak_bilatu")
+     */
+    public function autocompletebizikletaAction(Request $request)
+    {
+        $names = array();
+        $term = trim(strip_tags($request->get('term')));
+
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('AppBundle:Bizikleta')->createQueryBuilder('c')
+            ->where('c.bastidorea LIKE :bastidorea')
+            ->orWhere('c.erregistroa LIKE :erregistroa')
+            ->orWhere('c.kodea LIKE :kodea')
+            ->setParameter('bastidorea', '%'.$term.'%')
+            ->setParameter('erregistroa', '%'.$term.'%')
+            ->setParameter('kodea', '%'.$term.'%')
+            ->getQuery()
+            ->getResult();
+
+        $names = array();
+        foreach ($entities as $entity) {
+            $names[] = array(
+                'id' => $entity->getId(),
+                'izena' => $entity->getKodea()
+            );
+        }
+
+        $response = new JsonResponse();
+        $response->setData($names);
+
+        return $response;
+    }
+
+
+
+    /**
+     * MAILEGUA AMAITU
+     *
+     * @Route("/amaitu", name="maileguak_amaitu")
+     * @Method({"GET", "POST"})
+     */
+    public function amaituAction(Request $request)
+    {
+        $maileguak = new Maileguak();
+        $form = $this->createForm('AppBundle\Form\MaileguakAmaituType', $maileguak);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($maileguak);
+            $em->flush();
+
+            return $this->redirectToRoute('maileguak_menu');
+        } else {
+            $string = (string) $form->getErrors(true, false);
+            dump($form->getErrors(true, false));
+        }
+
+        return $this->render('maileguak/amaitu.html.twig', array(
+            'maileguak' => $maileguak,
+            'form' => $form->createView(),
+        ));
+    }
 
 
     /**
