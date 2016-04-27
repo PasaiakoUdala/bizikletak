@@ -192,20 +192,32 @@ class MaileguakController extends Controller
      * MAILEGUA AMAITU
      *
      * @Route("/amaitu", name="maileguak_amaitu")
-     * @Method({"GET", "POST"})
+     * @Method("POST")
      */
     public function amaituAction(Request $request)
     {
-        $maileguak = new Maileguak();
-        $form = $this->createForm('AppBundle\Form\MaileguakAmaituType', $maileguak);
+        $em = $this->getDoctrine()->getManager();
+        $id = $request->request->get('id');
+
+        if (!isset($id)) {
+            $request->getSession()
+                ->getFlashBag()
+                ->add('notice', 'Pasatako parametroa ez da zuzena.')
+            ;
+            $this->redirect($this->generateUrl("maileguak_bilatu"));
+        }
+
+//        $maileguak = new Maileguak();
+        $maileguak = $em->getRepository('AppBundle:Maileguak')->findOneById($id);
+        $form = $this->createForm('AppBundle\Form\MaileguakType', $maileguak);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            dump($maileguak);
             $em->persist($maileguak);
             $em->flush();
 
-            return $this->redirectToRoute('maileguak_menu');
+            return $this->redirectToRoute('maileguak_amaitu_ok');
         } else {
             $string = (string) $form->getErrors(true, false);
             dump($form->getErrors(true, false));
@@ -215,6 +227,19 @@ class MaileguakController extends Controller
             'maileguak' => $maileguak,
             'form' => $form->createView(),
         ));
+    }
+
+
+
+    /**
+     * Lists all Maileguak entities.
+     *
+     * @Route("/amaiera", name="maileguak_amaitu_ok")
+     * @Method("GET")
+     */
+    public function okAction()
+    {
+        return $this->render('maileguak/ok.html.twig');
     }
 
 

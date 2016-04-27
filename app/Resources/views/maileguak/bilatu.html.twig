@@ -116,7 +116,7 @@
                                     <td>{{ m.fetxahasi|date("Y/d/m h:m") }}</td>
                                     <td>{{ m.guneahasi }}</td>
                                     <td>
-                                        <form action="{{ path('maileguak_amaitu') }}">
+                                        <form action="{{ path('maileguak_amaitu') }}" method="post">
                                             <input type="hidden" name="id" value="{{ m.id }}">
                                             <button type="submit" class="btn btn-primary">
                                                 <i class="fa fa-search"></i> Itzuli
