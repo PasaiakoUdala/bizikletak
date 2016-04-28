@@ -4,16 +4,21 @@ easy_admin:
     design:
         menu:
             - { label: 'Maileguak', route: 'maileguak_menu' }
+            - label: 'Bezero - Zigorrak'
+              route: 'kudeatu_bezerozigorra_index'
+              children:
+                  - { route: 'kudeatu_bezerozigorra_index', icon: 'th-list', label: 'Zerrenda',  default: true }
+                  - { route: 'kudeatu_bezerozigorra_new', icon: 'th-list', label: 'Berria'}
             - label: 'Bizikletak'
               icon: 'bicycle'
               children:
-                  - { entity: 'Bizikleta', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }, default: true }
+                  - { entity: 'Bizikleta', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }}
                   - { entity: 'Bizikleta', icon: 'th-list', label: 'Berria', params: { action: 'new' }}
 
             - label: 'Barrutiak'
               icon: 'university'
               children:
-                  - { entity: 'Barrutia', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' } }
+                  - { entity: 'Barrutia', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }}
                   - { entity: 'Barrutia', icon: 'th-list', label: 'Berria', params: { action: 'new' }}
 
             - label: 'Guneak'
@@ -29,7 +34,6 @@ easy_admin:
                   - { entity: 'Bezeroa', icon: 'th-list', label: 'Berria', params: { action: 'new' }}
 
             - label: 'Zigorrak'
-              icon: 'user'
               children:
                   - { entity: 'Zigorra', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }}
                   - { entity: 'Zigorra', icon: 'th-list', label: 'Berria', params: { action: 'new' }}

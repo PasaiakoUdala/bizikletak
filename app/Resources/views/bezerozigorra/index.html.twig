@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <h1>Bezero eta zigorren zerrenda</h1>
+
+    <section id="emaitzak" class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">&nbsp;</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tbody><tr>
+                                <th>ID</th>
+                                <th>Bezeroa</th>
+                                <th>Zigorra</th>
+                                <th>Zigorra hasi</th>
+                                <th>Zigorra Amaitu</th>
+                                <th>Ekintzak</th>
+                            </tr>
+                            {% for m in bezeroZigorras %}
+                                <tr>
+                                    <td>{{ m.id }}</td>
+                                    <td>{{ m.bezeroa.izena }}</td>
+                                    <td>{{ m.zigorra.izena }}</td>
+                                    <td>{{ m.zigorrahasi|date("Y/d/m h:m") }}</td>
+                                    <td>{{ m.zigorraamaitu|date("Y/d/m h:m") }}</td>
+
+                                    <td>
+                                        <form action="{{ path('maileguak_amaitu') }}" method="post">
+                                            <input type="hidden" name="id" value="{{ m.id }}">
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="fa fa-search"></i> Itzuli
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+        </div>
+
+    </section>
+{% endblock %}

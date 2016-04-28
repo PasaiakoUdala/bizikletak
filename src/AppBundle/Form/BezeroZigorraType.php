@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
-class MaileguakHasiType extends AbstractType
+class BezeroZigorraType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -16,11 +16,11 @@ class MaileguakHasiType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('bezeroa',null, array('label' => 'form.name','required' => true, 'placeholder' => 'Aukeratu Bezeroa'))
-            ->add('guneahasi',null, array('label' => 'form.name','required' => true, 'placeholder' => 'Aukeratu gunea'))
-            ->add('bizikleta',null, array('label' => 'form.name','required' => true, 'placeholder' => 'Aukeratu Bizikleta'))
-            ->add('fetxa_hasi',DatetimeType::class, array('widget' => 'single_text'))
-            ->add('erabilera')
+            ->add('zigorraHasi','dateTimePicker')
+            ->add('zigorraAmaitu')
+            ->add('mailegua')
+            ->add('bezeroa')
+            ->add('zigorra')
         ;
     }
     
@@ -30,7 +30,15 @@ class MaileguakHasiType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Maileguak'
+            'data_class' => 'AppBundle\Entity\BezeroZigorra'
         ));
     }
+
+//    protected function configureFormFields(FormMapper $formMapper)
+//    {
+//        $formMapper
+//            ->add('zigorraHasi', 'dateTimePicker' )
+//            ->add('zigorraAmaitu', 'dateTimePicker' )
+//        ;
+//    }
 }

@@ -89,6 +89,12 @@ class Zigorra
     protected $bezeroa;
 
     /**
+     * @var BezeroZigorra
+     * @ORM\OneToMany(targetEntity="BezeroZigorra", mappedBy="zigorra", cascade={"remove"})
+     */
+    protected $bezerozigorra;
+
+    /**
      * ************************************************************************************************************************************************************************
      * ************************************************************************************************************************************************************************
      * ***** ERLAZIOAK
@@ -333,5 +339,39 @@ class Zigorra
     public function getZenbatekoa()
     {
         return $this->zenbatekoa;
+    }
+
+    /**
+     * Add bezerozigorra
+     *
+     * @param \AppBundle\Entity\BezeroZigorra $bezerozigorra
+     *
+     * @return Zigorra
+     */
+    public function addBezerozigorra(\AppBundle\Entity\BezeroZigorra $bezerozigorra)
+    {
+        $this->bezerozigorra[] = $bezerozigorra;
+
+        return $this;
+    }
+
+    /**
+     * Remove bezerozigorra
+     *
+     * @param \AppBundle\Entity\BezeroZigorra $bezerozigorra
+     */
+    public function removeBezerozigorra(\AppBundle\Entity\BezeroZigorra $bezerozigorra)
+    {
+        $this->bezerozigorra->removeElement($bezerozigorra);
+    }
+
+    /**
+     * Get bezerozigorra
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getBezerozigorra()
+    {
+        return $this->bezerozigorra;
     }
 }
