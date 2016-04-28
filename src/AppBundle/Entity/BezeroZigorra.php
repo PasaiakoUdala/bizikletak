@@ -57,7 +57,7 @@ class BezeroZigorra
 
     public function __toString()
     {
-        //return $this->getKodea();
+        return $this->getBezeroa()->getIzena() . " - " . $this->getZigorra()->getIzena();
     }
 
 
@@ -70,12 +70,6 @@ class BezeroZigorra
      */
 
     /**
-     * @var Maileguak
-     * @ORM\OneToOne(targetEntity="Maileguak", mappedBy="bezerozigorra")
-     */
-    protected $mailegua;
-
-    /**
      * @var Bezeroa
      * @ORM\ManyToOne(targetEntity="Bezeroa", inversedBy="bezerozigorra")
      */
@@ -86,7 +80,6 @@ class BezeroZigorra
      * @ORM\ManyToOne(targetEntity="Zigorra", inversedBy="bezerozigorra")
      */
     protected $zigorra;
-
 
     /**
      * ************************************************************************************************************************************************************************
@@ -135,7 +128,7 @@ class BezeroZigorra
     /**
      * Set zigorraAmaitu
      *
-     * @param string $zigorraAmaitu
+     * @param \DateTime $zigorraAmaitu
      *
      * @return BezeroZigorra
      */
@@ -149,7 +142,7 @@ class BezeroZigorra
     /**
      * Get zigorraAmaitu
      *
-     * @return string
+     * @return \DateTime
      */
     public function getZigorraAmaitu()
     {
@@ -202,64 +195,6 @@ class BezeroZigorra
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * Set mailegua
-     *
-     * @param \AppBundle\Entity\Maileguak $mailegua
-     *
-     * @return BezeroZigorra
-     */
-    public function setMailegua(\AppBundle\Entity\Maileguak $mailegua = null)
-    {
-        $this->mailegua = $mailegua;
-
-        return $this;
-    }
-
-    /**
-     * Get mailegua
-     *
-     * @return \AppBundle\Entity\Maileguak
-     */
-    public function getMailegua()
-    {
-        return $this->mailegua;
-    }
-
-    /**
-     * Add zigorrak
-     *
-     * @param \AppBundle\Entity\Zigorra $zigorrak
-     *
-     * @return BezeroZigorra
-     */
-    public function addZigorrak(\AppBundle\Entity\Zigorra $zigorrak)
-    {
-        $this->zigorrak[] = $zigorrak;
-
-        return $this;
-    }
-
-    /**
-     * Remove zigorrak
-     *
-     * @param \AppBundle\Entity\Zigorra $zigorrak
-     */
-    public function removeZigorrak(\AppBundle\Entity\Zigorra $zigorrak)
-    {
-        $this->zigorrak->removeElement($zigorrak);
-    }
-
-    /**
-     * Get zigorrak
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getZigorrak()
-    {
-        return $this->zigorrak;
     }
 
     /**

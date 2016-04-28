@@ -28,12 +28,11 @@
                                     <td>{{ m.zigorra.izena }}</td>
                                     <td>{{ m.zigorrahasi|date("Y/d/m h:m") }}</td>
                                     <td>{{ m.zigorraamaitu|date("Y/d/m h:m") }}</td>
-
                                     <td>
                                         <form action="{{ path('maileguak_amaitu') }}" method="post">
                                             <input type="hidden" name="id" value="{{ m.id }}">
-                                            <button type="submit" class="btn btn-primary">
-                                                <i class="fa fa-search"></i> Itzuli
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="fa fa-trash-o"></i> Ezabatu
                                             </button>
                                         </form>
                                     </td>

@@ -115,6 +115,7 @@ class Zigorra
 
    
 
+
     /**
      * Get id
      *
@@ -171,6 +172,78 @@ class Zigorra
     public function getDeskribapena()
     {
         return $this->deskribapena;
+    }
+
+    /**
+     * Set maila
+     *
+     * @param string $maila
+     *
+     * @return Zigorra
+     */
+    public function setMaila($maila)
+    {
+        $this->maila = $maila;
+
+        return $this;
+    }
+
+    /**
+     * Get maila
+     *
+     * @return string
+     */
+    public function getMaila()
+    {
+        return $this->maila;
+    }
+
+    /**
+     * Set egunak
+     *
+     * @param integer $egunak
+     *
+     * @return Zigorra
+     */
+    public function setEgunak($egunak)
+    {
+        $this->egunak = $egunak;
+
+        return $this;
+    }
+
+    /**
+     * Get egunak
+     *
+     * @return integer
+     */
+    public function getEgunak()
+    {
+        return $this->egunak;
+    }
+
+    /**
+     * Set zenbatekoa
+     *
+     * @param string $zenbatekoa
+     *
+     * @return Zigorra
+     */
+    public function setZenbatekoa($zenbatekoa)
+    {
+        $this->zenbatekoa = $zenbatekoa;
+
+        return $this;
+    }
+
+    /**
+     * Get zenbatekoa
+     *
+     * @return string
+     */
+    public function getZenbatekoa()
+    {
+        return $this->zenbatekoa;
     }
 
     /**
@@ -267,78 +340,6 @@ class Zigorra
     public function getBezeroa()
     {
         return $this->bezeroa;
-    }
-
-    /**
-     * Set maila
-     *
-     * @param string $maila
-     *
-     * @return Zigorra
-     */
-    public function setMaila($maila)
-    {
-        $this->maila = $maila;
-
-        return $this;
-    }
-
-    /**
-     * Get maila
-     *
-     * @return string
-     */
-    public function getMaila()
-    {
-        return $this->maila;
-    }
-
-    /**
-     * Set egunak
-     *
-     * @param integer $egunak
-     *
-     * @return Zigorra
-     */
-    public function setEgunak($egunak)
-    {
-        $this->egunak = $egunak;
-
-        return $this;
-    }
-
-    /**
-     * Get egunak
-     *
-     * @return integer
-     */
-    public function getEgunak()
-    {
-        return $this->egunak;
-    }
-
-    /**
-     * Set zenbatekoa
-     *
-     * @param \double $zenbatekoa
-     *
-     * @return Zigorra
-     */
-    public function setZenbatekoa(\double $zenbatekoa)
-    {
-        $this->zenbatekoa = $zenbatekoa;
-
-        return $this;
-    }
-
-    /**
-     * Get zenbatekoa
-     *
-     * @return \double
-     */
-    public function getZenbatekoa()
-    {
-        return $this->zenbatekoa;
     }
 
     /**

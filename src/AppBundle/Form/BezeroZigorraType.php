@@ -16,9 +16,14 @@ class BezeroZigorraType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('zigorraHasi','dateTimePicker')
-            ->add('zigorraAmaitu')
-            ->add('mailegua')
+            ->add('zigorraHasi',DatetimeType::class, array(
+                    'widget' => 'single_text'
+                )
+            )
+            ->add('zigorraAmaitu',DatetimeType::class, array(
+                    'widget' => 'single_text'
+                )
+            )
             ->add('bezeroa')
             ->add('zigorra')
         ;
@@ -34,11 +39,4 @@ class BezeroZigorraType extends AbstractType
         ));
     }
 
-//    protected function configureFormFields(FormMapper $formMapper)
-//    {
-//        $formMapper
-//            ->add('zigorraHasi', 'dateTimePicker' )
-//            ->add('zigorraAmaitu', 'dateTimePicker' )
-//        ;
-//    }
 }

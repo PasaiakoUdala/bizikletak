@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Maileguak
@@ -57,6 +58,17 @@ class Maileguak
      */
     private $updatedAt;
 
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
+    public function __toString()
+    {
+        return $this->getBezeroa()->getIzena() . " - " . $this->setBizikleta();
+    }
+
     /**
      * ************************************************************************************************************************************************************************
      * ************************************************************************************************************************************************************************
@@ -90,30 +102,12 @@ class Maileguak
     protected $bizikleta;
 
     /**
-     * @var BezeroZigorra
-     * @ORM\OneToOne(targetEntity="BezeroZigorra", inversedBy="mailegua")
-     */
-    private $bezerozigorra;
-
-
-    /**
      * ************************************************************************************************************************************************************************
      * ************************************************************************************************************************************************************************
      * ***** ERLAZIOAK
      * ************************************************************************************************************************************************************************
      * ************************************************************************************************************************************************************************
      */
-
-    public function __construct()
-    {
-        $this->createdAt = new \DateTime();
-        $this->updatedAt = new \DateTime();
-    }
-
-    public function __toString()
-    {
-        return $this->getBezeroa()->getIzena() . " - " . $this->getFetxaHasi()->format('Y-m-d H:i:s');
-    }
 
 
 
@@ -341,53 +335,5 @@ class Maileguak
     public function getBizikleta()
     {
         return $this->bizikleta;
-    }
-
-    /**
-     * Set bezeroazigorra
-     *
-     * @param \AppBundle\Entity\BezeroaZigorra $bezeroazigorra
-     *
-     * @return Maileguak
-     */
-    public function setBezeroazigorra(\AppBundle\Entity\BezeroaZigorra $bezeroazigorra = null)
-    {
-        $this->bezeroazigorra = $bezeroazigorra;
-
-        return $this;
-    }
-
-    /**
-     * Get bezeroazigorra
-     *
-     * @return \AppBundle\Entity\BezeroaZigorra
-     */
-    public function getBezeroazigorra()
-    {
-        return $this->bezeroazigorra;
-    }
-
-    /**
-     * Set bezerozigorra
-     *
-     * @param \AppBundle\Entity\BezeroZigorra $bezerozigorra
-     *
-     * @return Maileguak
-     */
-    public function setBezerozigorra(\AppBundle\Entity\BezeroZigorra $bezerozigorra = null)
-    {
-        $this->bezerozigorra = $bezerozigorra;
-
-        return $this;
-    }
-
-    /**
-     * Get bezerozigorra
-     *
-     * @return \AppBundle\Entity\BezeroZigorra
-     */
-    public function getBezerozigorra()
-    {
-        return $this->bezerozigorra;
     }
 }

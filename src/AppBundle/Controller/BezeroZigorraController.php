@@ -50,7 +50,7 @@ class BezeroZigorraController extends Controller
             $em->persist($bezeroZigorra);
             $em->flush();
 
-            return $this->redirectToRoute('kudeatu_bezerozigorra_show', array('id' => $bezeroZigorra->getId()));
+            return $this->redirectToRoute('kudeatu_bezerozigorra_index');
         }
 
         return $this->render('bezerozigorra/new.html.twig', array(
