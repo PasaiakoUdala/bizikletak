@@ -78,10 +78,19 @@ class MaileguakController extends Controller
             if(isset($bizikleta_id)) {
                 $bizikleta = $em->getRepository('AppBundle:Bizikleta')->findOneById($bizikleta_id);
             }
+            dump($bizikleta_id);
+            dump($bezeroa_id);
+
 
             $repository = $this->getDoctrine()->getRepository('AppBundle:Maileguak');
 
-            if (!isset($bizikleta) and (!isset($bezeroa))) {
+            if (!isset($bezeroa_id) and (!isset($bezeroa_id)) or (($bezeroa_id=="") and ($bizikleta_id=="")))
+            {
+                // ez bada ezer zehaztu, guztiak aurkeztu
+                $query = $repository->createQueryBuilder('m')
+                    ->getQuery();
+
+            } elseif  (!isset($bizikleta) and (!isset($bezeroa))) {
                 $request->getSession()
                     ->getFlashBag()
                     ->add('notice', 'Ez da aurkitu mailegurik.!')
