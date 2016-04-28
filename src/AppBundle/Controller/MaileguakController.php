@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 /**
  * Maileguak controller.
  *
- * @Route("/maileguak")
+ * @Route("/kudeatu/maileguak")
  */
 class MaileguakController extends Controller
 {
@@ -213,7 +213,7 @@ class MaileguakController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             $em->persist($maileguak);
             $em->flush();
 

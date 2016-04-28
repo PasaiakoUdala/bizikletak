@@ -27,7 +27,7 @@ easy_admin:
                     - { property: 'sinatuta', label: 'Sinatuta', css_class: 'col-sm-3' }
 
                     - { property: 'kopurua', label: 'Kopurua', css_class: 'col-sm-4 large' }
-                    - { property: 'oharrak', label: 'Oharrak', css_class: 'col-sm-12 large' }
+                    - { property: 'oharrak', type: 'ckeditor' }
                     - { property: 'zigorrak', label: 'Zigorrak', css_class: 'col-sm-12 large' }
 
 

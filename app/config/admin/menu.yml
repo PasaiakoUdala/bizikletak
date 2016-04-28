@@ -27,3 +27,9 @@ easy_admin:
               children:
                   - { entity: 'Bezeroa', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }}
                   - { entity: 'Bezeroa', icon: 'th-list', label: 'Berria', params: { action: 'new' }}
+
+            - label: 'Zigorrak'
+              icon: 'user'
+              children:
+                  - { entity: 'Zigorra', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }}
+                  - { entity: 'Zigorra', icon: 'th-list', label: 'Berria', params: { action: 'new' }}

@@ -1,0 +1,25 @@
+easy_admin:
+    entities:
+        Zigorra:
+            class: AppBundle\Entity\Zigorra
+            label: 'Zigorrak'
+            list:
+                title: '%%entity_label%%- mantenimendua'
+                actions:
+                    - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields: ['id','izena', 'maila', 'alokatzen_utzi', 'egunak', 'zenbatekoa']
+
+            show:
+                fields: ['id','izena', 'deskribapena', 'maila', 'alokatzen_utzi', 'egunak', 'zenbatekoa']
+
+            form:
+                fields:
+                    - { property: 'izena', label: 'Izena', css_class: 'col-sm-12 large' }
+                    - { property: 'deskribapena', type: 'ckeditor' }
+                    - { property: 'alokatzen_utzi'}
+                    - { property: 'maila', label: 'Zigor Maila:', css_class: 'col-sm-3', type: 'choice', type_options: { placeholder: 'Aukeratu maila' ,choices: { 'Arina': '0', 'Larria': '1', 'Oso larria': '2' } }}
+                    - { property: 'egunak'}
+                    - { property: 'zenbatekoa'}
+

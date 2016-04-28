@@ -120,13 +120,6 @@ class Bezeroa
     private $oharrak;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="zigorrak", type="text", nullable=true)
-     */
-    private $zigorrak;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -153,6 +146,12 @@ class Bezeroa
      * @ORM\OneToMany(targetEntity="Maileguak", mappedBy="bezeroa", cascade={"remove"})
      */
     protected $maileguak;
+
+    /**
+     * @var Zigorra
+     * @ORM\OneToMany(targetEntity="Zigorra", mappedBy="bezeroa", cascade={"remove"})
+     */
+    protected $zigorrak;
 
 
     /**
@@ -626,5 +625,29 @@ class Bezeroa
     public function getMaileguak()
     {
         return $this->maileguak;
+    }
+
+    /**
+     * Add zigorrak
+     *
+     * @param \AppBundle\Entity\Zigorra $zigorrak
+     *
+     * @return Bezeroa
+     */
+    public function addZigorrak(\AppBundle\Entity\Zigorra $zigorrak)
+    {
+        $this->zigorrak[] = $zigorrak;
+
+        return $this;
+    }
+
+    /**
+     * Remove zigorrak
+     *
+     * @param \AppBundle\Entity\Zigorra $zigorrak
+     */
+    public function removeZigorrak(\AppBundle\Entity\Zigorra $zigorrak)
+    {
+        $this->zigorrak->removeElement($zigorrak);
     }
 }

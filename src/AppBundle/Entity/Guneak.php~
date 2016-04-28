@@ -113,6 +113,13 @@ class Guneak
     protected $bizikletakamaitu;
 
     /**
+     * @var Bizikleta
+     * @ORM\OneToMany(targetEntity="Bizikleta", mappedBy="gunea")
+     */
+    protected $bizikletak;
+
+
+    /**
      * @var Maileguak
      * @ORM\OneToMany(targetEntity="Maileguak", mappedBy="gunea", cascade={"remove"})
      */
