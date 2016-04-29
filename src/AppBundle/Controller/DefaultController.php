@@ -54,7 +54,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/bezerodatuak/{id}", name="gunedatuak")
+     * @Route("/bezerodatuak/{id}", name="bezerodatuak")
      */
     public function bezerodatuakAction($id) {
         $em = $this->getDoctrine()->getManager();

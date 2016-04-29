@@ -56,10 +56,6 @@ class MaileguakController extends Controller
 
             if (count($zigorrak) > 0 ) {
                 // Zigorrak ditu
-//                $request->getSession()
-//                    ->getFlashBag()
-//                    ->add('notice', 'Bezero honek zigorra du!')
-//                ;
                 return $this->render('maileguak/hasi.html.twig', array(
                     'maileguak' => $maileguak,
                     'zigorrak' => $zigorrak,
