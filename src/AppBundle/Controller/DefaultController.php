@@ -2,11 +2,12 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Bezeroa;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use Symfony\Component\Serializer\Serializer;
 
 class DefaultController extends Controller
 {
@@ -46,6 +47,42 @@ class DefaultController extends Controller
         }
 
 
+        $response = new Response();
+        $response->setContent(json_encode($loc));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    /**
+     * @Route("/bezerodatuak/{id}", name="gunedatuak")
+     */
+    public function bezerodatuakAction($id) {
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $this->getDoctrine()->getRepository('AppBundle:BezeroZigorra');
+        $query = $repo->createQueryBuilder('bz')
+                        ->where('bz.bezeroa = :id')
+                        ->andWhere('bz.zigorraAmaitu <= :fetxa')
+                        ->setParameter('id', $id)
+                        ->setParameter('fetxa', new \DateTime() )->getQuery();
+
+        $zigorrak=$query->getResult();
+
+        $loc = array();
+
+        foreach ($zigorrak as $z) {
+
+            $l = array (
+                'izena' => $z->getBezeroa()->getIzena(),
+                'zigorraHasi' => $z->getZigorraHasi(),
+                'zigorraAmaitu' => $z->getZigorraAmaitu()
+            );
+
+            array_push($loc, $l );
+
+        }
+        
+           
         $response = new Response();
         $response->setContent(json_encode($loc));
         $response->headers->set('Content-Type', 'application/json');

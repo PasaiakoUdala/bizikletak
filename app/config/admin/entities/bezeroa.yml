@@ -11,6 +11,7 @@ easy_admin:
                     - { name: 'delete', label: '', icon: 'trash' }
                 fields: ['izena','nan','bazkidea','urtekoa','ordainketa','pasaitarra','alokairua','aparkalekua','sinatuta']
 
+
             form:
                 fields:
                     - { property: 'izena', label: 'Izena', css_class: 'col-sm-12 large' }

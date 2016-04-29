@@ -16,6 +16,42 @@
             </div>
         </div>
     </section>
+    {% if zigorrak is defined %}
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div id="flash-messages" class="row">
+                <div class="box-body with-border">
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-ban"></i> Adi!</h4>
+                        <p>Bezero honek zigorrak ditu!</p>
+                        <br/>
+
+                        <div class="table-responsive no-padding">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <th>Zigorra</th>
+                                    <th>Hasi</th>
+                                    <th>Amaitu</th>
+                                </tr>
+                                {% for z in zigorrak %}
+                                    <tr>
+                                        <td>{{ z.zigorra.izena }}</td>
+                                        <td>{{ z.zigorraHasi | date('Y-m-d H:i:s') }}</td>
+                                        <td>{{ z.zigorraAmaitu | date('Y-m-d H:i:s') }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3"></div>
+    {% endif %}
 
     <section id="main" class="content">
         {{ form_start(form) }}

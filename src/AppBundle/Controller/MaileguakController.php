@@ -43,14 +43,39 @@ class MaileguakController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $maileguak->setUpdatedAt(new \DateTime());
-            $maileguak->getBizikleta()->setAlokatua(true);
-            $maileguak->getBezeroa()->setAlokatua(true);
-            $em->persist($maileguak);
-            $em->flush();
 
-            return $this->redirectToRoute('maileguak_menu');
+            // begiratu ea bezeroak zigorrik duen
+            $repo = $this->getDoctrine()->getRepository('AppBundle:BezeroZigorra');
+            $query = $repo->createQueryBuilder('bz')
+                ->where('bz.bezeroa = :id')
+                ->andWhere('bz.zigorraAmaitu <= :fetxa')
+                ->setParameter('id', $maileguak->getBezeroa()->getId())
+                ->setParameter('fetxa', new \DateTime() )->getQuery();
+
+            $zigorrak=$query->getResult();
+
+            if (count($zigorrak) > 0 ) {
+                // Zigorrak ditu
+//                $request->getSession()
+//                    ->getFlashBag()
+//                    ->add('notice', 'Bezero honek zigorra du!')
+//                ;
+                return $this->render('maileguak/hasi.html.twig', array(
+                    'maileguak' => $maileguak,
+                    'zigorrak' => $zigorrak,
+                    'form' => $form->createView(),
+                ));
+            } else {
+                $em = $this->getDoctrine()->getManager();
+                $maileguak->setUpdatedAt(new \DateTime());
+                $maileguak->getBizikleta()->setAlokatua(true);
+                $maileguak->getBezeroa()->setAlokatua(true);
+                $em->persist($maileguak);
+                $em->flush();
+
+                return $this->redirectToRoute('maileguak_menu');
+            }
+
         } else {
             $string = (string) $form->getErrors(true, false);
 //            dump($form->getErrors(true, false));
