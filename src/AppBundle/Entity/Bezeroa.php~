@@ -114,6 +114,13 @@ class Bezeroa
     private $sinatuta;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="alokatua", type="boolean", nullable=true)
+     */
+    private $alokatua;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="oharrak", type="string", length=255, nullable=true)

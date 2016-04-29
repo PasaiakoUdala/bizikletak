@@ -46,6 +46,7 @@ class MaileguakController extends Controller
             $em = $this->getDoctrine()->getManager();
             $maileguak->setUpdatedAt(new \DateTime());
             $maileguak->getBizikleta()->setAlokatua(true);
+            $maileguak->getBezeroa()->setAlokatua(true);
             $em->persist($maileguak);
             $em->flush();
 
@@ -87,6 +88,7 @@ class MaileguakController extends Controller
             {
                 // ez bada ezer zehaztu, guztiak aurkeztu
                 $query = $repository->createQueryBuilder('m')
+                    ->Where('m.fetxa_amaitu is NULL')
                     ->getQuery();
 
             } elseif  (!isset($bizikleta) and (!isset($bezeroa))) {
@@ -99,20 +101,24 @@ class MaileguakController extends Controller
             }
 
             if ((isset($bizikleta)) and (isset($bezeroa))) {
+//                bezeroa eta bizikleta pasa dira
                 $query = $repository->createQueryBuilder('m')
                     ->where('m.bezeroa = :bezeroa')
                     ->andWhere('m.bizikleta = :bizikleta')
+                    ->andWhere('m.fetxa_amaitu is NULL')
                     ->setParameter('bezeroa', $bezeroa)
                     ->setParameter('bizikleta', $bizikleta)
                     ->getQuery();
             } elseif (isset($bizikleta)) {
                 $query = $repository->createQueryBuilder('m')
                     ->Where('m.bizikleta = :bizikleta')
+                    ->andWhere('m.fetxa_amaitu is NULL')
                     ->setParameter('bizikleta', $bizikleta)
                     ->getQuery();
             } elseif (isset($bezeroa)) {
                 $query = $repository->createQueryBuilder('m')
                     ->where('m.bezeroa = :bezeroa')
+                    ->andWhere('m.fetxa_amaitu is NULL')
                     ->setParameter('bezeroa', $bezeroa)
                     ->getQuery();
             }
@@ -222,6 +228,7 @@ class MaileguakController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $maileguak->setUpdatedAt(new \DateTime());
             $maileguak->getBizikleta()->setAlokatua(false);
+            $maileguak->getBezeroa()->setAlokatua(false);
             $em->persist($maileguak);
             $em->flush();
 

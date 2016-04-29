@@ -114,6 +114,13 @@ class Bezeroa
     private $sinatuta;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="alokatua", type="boolean", nullable=true)
+     */
+    private $alokatua;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="oharrak", type="string", length=255, nullable=true)
@@ -690,5 +697,29 @@ class Bezeroa
     public function getBezerozigorra()
     {
         return $this->bezerozigorra;
+    }
+
+    /**
+     * Set alokatua
+     *
+     * @param boolean $alokatua
+     *
+     * @return Bezeroa
+     */
+    public function setAlokatua($alokatua)
+    {
+        $this->alokatua = $alokatua;
+
+        return $this;
+    }
+
+    /**
+     * Get alokatua
+     *
+     * @return boolean
+     */
+    public function getAlokatua()
+    {
+        return $this->alokatua;
     }
 }
