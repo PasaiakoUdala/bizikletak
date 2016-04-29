@@ -47,6 +47,7 @@ class BezeroZigorraController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $bezeroZigorra->setUpdatedAt(new \DateTime());
             $em->persist($bezeroZigorra);
             $em->flush();
 
@@ -89,6 +90,7 @@ class BezeroZigorraController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $bezeroZigorra->setUpdatedAt(new \DateTime());
             $em->persist($bezeroZigorra);
             $em->flush();
 

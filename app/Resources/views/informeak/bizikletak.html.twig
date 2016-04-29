@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    {% if bizikletak is defined %}
+        <section id="emaitzak" class="content">
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Aukeratu mailegua itzulpena gauzatzeko</h3>
+                        </div>
+
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover">
+                                <tbody><tr>
+                                    <th>Gunea</th>
+                                    <th>Bizikleta Kopurua</th>
+                                </tr>
+                                {% for g in guneak %}
+                                    <tr>
+                                        <td>{{ g.izena }}</td>
+                                        <td>{% if g.bizikletak.count is defined %}{{ g.bizikletak | length }}{% endif %}</td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover">
+                                <tbody><tr>
+                                    <th>Kodea</th>
+                                    <th>Gunea</th>
+                                    <th>Ohar Mekanikoak</th>
+                                    <th>Maileguan</th>
+                                    <th>Ekintzak</th>
+                                </tr>
+                                {% for m in bizikletak %}
+                                    <tr>
+                                        <td>{{ m.kodea }}</td>
+                                        <td>{{ m.gunea.izena }}</td>
+                                        <td>{{ m.oharrak | raw }}</td>
+                                        {#<td>{{ m.fetxahasi|date("Y/d/m h:m") }}</td>#}
+                                        {#<td>{{  }}</td>#}
+                                        <td>
+                                            <form action="{{ path('maileguak_amaitu') }}" method="post">
+                                                <input type="hidden" name="id" value="{{ m.id }}">
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="fa fa-search"></i> Itzuli
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+
+        </section>
+    {% endif %}
+{% endblock %}
+

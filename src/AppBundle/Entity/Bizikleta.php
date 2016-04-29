@@ -50,6 +50,13 @@ class Bizikleta
     private $ezaugarriak;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="alokatua", type="boolean", nullable=true)
+     */
+    private $alokatua;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="oharrak2", type="text", nullable=true)
@@ -105,6 +112,7 @@ class Bizikleta
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->alokatua = false;
     }
 
     public function __toString()
@@ -370,5 +378,29 @@ class Bizikleta
     public function getMaileguak()
     {
         return $this->maileguak;
+    }
+
+    /**
+     * Set alokatua
+     *
+     * @param boolean $alokatua
+     *
+     * @return Bizikleta
+     */
+    public function setAlokatua($alokatua)
+    {
+        $this->alokatua = $alokatua;
+
+        return $this;
+    }
+
+    /**
+     * Get alokatua
+     *
+     * @return boolean
+     */
+    public function getAlokatua()
+    {
+        return $this->alokatua;
     }
 }

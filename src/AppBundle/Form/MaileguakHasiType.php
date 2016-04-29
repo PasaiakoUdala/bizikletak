@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class MaileguakHasiType extends AbstractType
 {
@@ -18,7 +20,26 @@ class MaileguakHasiType extends AbstractType
         $builder
             ->add('bezeroa',null, array('label' => 'form.name','required' => true, 'placeholder' => 'Aukeratu Bezeroa'))
             ->add('guneahasi',null, array('label' => 'form.name','required' => true, 'placeholder' => 'Aukeratu gunea'))
-            ->add('bizikleta',null, array('label' => 'form.name','required' => true, 'placeholder' => 'Aukeratu Bizikleta'))
+//            ->add('bizikleta',null, array('label' => 'form.name','required' => true, 'placeholder' => 'Aukeratu Bizikleta'))
+            ->add('bizikleta', EntityType::class, array(
+                    'class' => 'AppBundle:Bizikleta',
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('b')
+                            ->where('b.alokatua <> 1 or b.alokatua is NULL')
+                            ->orderBy('b.kodea', 'ASC');
+                    },
+                    'required' => true,
+                    'placeholder' => 'Aukeratu Bizikleta'
+            ))
+//            ->add('bizikleta', 'entity', array(
+//                'class' => 'AppBundle\Entity\Bizikleta',
+//                'property' => 'izena',
+//                'label' => 'Bizikletak',
+//                'mapped' => false,
+//                'query_builder' => function (EntityRepository $er) {
+//                    return $er->createQueryBuilder('b')
+//                        ->where('b.alokatua <> 1');
+//                },))
             ->add('fetxa_hasi',DatetimeType::class, array('widget' => 'single_text'))
             ->add('erabilera')
         ;

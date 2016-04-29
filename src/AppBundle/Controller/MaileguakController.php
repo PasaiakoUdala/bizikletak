@@ -44,6 +44,8 @@ class MaileguakController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $maileguak->setUpdatedAt(new \DateTime());
+            $maileguak->getBizikleta()->setAlokatua(true);
             $em->persist($maileguak);
             $em->flush();
 
@@ -218,7 +220,8 @@ class MaileguakController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $maileguak->setUpdatedAt(new \DateTime());
+            $maileguak->getBizikleta()->setAlokatua(false);
             $em->persist($maileguak);
             $em->flush();
 

@@ -9,13 +9,14 @@ easy_admin:
                     - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }
                     - { name: 'delete', label: '', icon: 'trash' }
-                fields: ['id','kodea','erregistroa','bastidorea','gunea']
+                fields: ['id','kodea','erregistroa','bastidorea','gunea', 'alokatua']
 
             form:
                 fields:
                     - { property: 'kodea', label: 'Kodea', css_class: 'col-sm-12 large' }
                     - { property: 'erregistroa', label: 'Erregistroa', css_class: 'col-sm-12 large' }
                     - { property: 'bastidorea', label: 'Bastidorea', css_class: 'col-sm-12 large' }
+                    - { property: 'alokatua' }
                     - { property: 'ezaugarriak', type: 'ckeditor' }
                     - { property: 'oharrak', type: 'ckeditor' }
                     - { property: 'gunea', label: 'Gunea' , type_options: { placeholder: 'Aukeratu gunea...' } }

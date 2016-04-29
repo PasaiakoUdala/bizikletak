@@ -3,12 +3,14 @@ easy_admin:
         datetime: 'Y/m/d h:i A e'
     design:
         menu:
-            - { label: 'Maileguak', route: 'maileguak_menu' }
+            - { label: 'Maileguak', route: 'maileguak_menu',default: true }
             - label: 'Bezero - Zigorrak'
               route: 'kudeatu_bezerozigorra_index'
               children:
-                  - { route: 'kudeatu_bezerozigorra_index', icon: 'th-list', label: 'Zerrenda',  default: true }
+                  - { route: 'kudeatu_bezerozigorra_index', icon: 'th-list', label: 'Zerrenda'}
                   - { route: 'kudeatu_bezerozigorra_new', icon: 'th-list', label: 'Berria'}
+            - { label: '', url: '#', icon: '' }
+            - { label: '', url: '#', icon: '' }
             - label: 'Bizikletak'
               icon: 'bicycle'
               children:
@@ -37,3 +39,7 @@ easy_admin:
               children:
                   - { entity: 'Zigorra', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }}
                   - { entity: 'Zigorra', icon: 'th-list', label: 'Berria', params: { action: 'new' }}
+
+            - { label: '', url: '#', icon: '' }
+            - { label: '', url: '#', icon: '' }
+            - { label: 'Informeak', route: 'informe_menua' }

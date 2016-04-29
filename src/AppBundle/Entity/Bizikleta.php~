@@ -50,6 +50,13 @@ class Bizikleta
     private $ezaugarriak;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="alokatua", type="boolean", nullable=true)
+     */
+    private $alokatua;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="oharrak2", type="text", nullable=true)
