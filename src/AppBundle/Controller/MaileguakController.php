@@ -50,7 +50,7 @@ class MaileguakController extends Controller
             return $this->redirectToRoute('maileguak_menu');
         } else {
             $string = (string) $form->getErrors(true, false);
-            dump($form->getErrors(true, false));
+//            dump($form->getErrors(true, false));
         }
 
         return $this->render('maileguak/hasi.html.twig', array(
@@ -78,9 +78,6 @@ class MaileguakController extends Controller
             if(isset($bizikleta_id)) {
                 $bizikleta = $em->getRepository('AppBundle:Bizikleta')->findOneById($bizikleta_id);
             }
-            dump($bizikleta_id);
-            dump($bezeroa_id);
-
 
             $repository = $this->getDoctrine()->getRepository('AppBundle:Maileguak');
 
@@ -216,7 +213,6 @@ class MaileguakController extends Controller
             $this->redirect($this->generateUrl("maileguak_bilatu"));
         }
 
-//        $maileguak = new Maileguak();
         $maileguak = $em->getRepository('AppBundle:Maileguak')->findOneById($id);
         $form = $this->createForm('AppBundle\Form\MaileguakType', $maileguak);
         $form->handleRequest($request);
@@ -229,7 +225,7 @@ class MaileguakController extends Controller
             return $this->redirectToRoute('maileguak_amaitu_ok');
         } else {
             $string = (string) $form->getErrors(true, false);
-            dump($form->getErrors(true, false));
+//            dump($form->getErrors(true, false));
         }
 
         return $this->render('maileguak/amaitu.html.twig', array(

@@ -17,13 +17,11 @@ class MaileguakType extends AbstractType
     {
         $builder
             ->add('fetxa_hasi',DatetimeType::class, array(
-                    'widget' => 'single_text',
-                    'format' => 'yyyy-MM-dd  HH:mm'
+                    'widget' => 'single_text'
                 )
             )
             ->add('fetxa_amaitu',DatetimeType::class, array(
-                    'widget' => 'single_text',
-                    'format' => 'yyyy-MM-dd  HH:mm'
+                    'widget' => 'single_text'
                 )
             )
             ->add('erabilera')
