@@ -1,0 +1,21 @@
+easy_admin:
+    entities:
+        Matxura:
+            class: AppBundle\Entity\Matxura
+            label: 'Matxurak'
+            list:
+                title: '%%entity_label%%k'
+                actions:
+                    - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields: ['id','izena','salneurria']
+
+            show:
+                fields: ['izena','deskribapena','salneurria']
+
+            form:
+                fields:
+                    - { property: 'izena', label: 'Izena', css_class: 'col-sm-12 large' }
+                    - { property: 'deskribapena', type: 'ckeditor' }
+                    - { property: 'salneurria', type: 'money', type_options: { currency: 'EUR' } , css_class: 'col-sm-2 large' }

@@ -2,7 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Matxura;
 
 /**
  * Bizikleta
@@ -100,6 +102,14 @@ class Bizikleta
     protected $maileguak;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Matxura", inversedBy="bizikletak")
+     * @ORM\JoinTable(name="bizikleta_matxura")
+     */
+    private $matxurak;
+
+
+
+    /**
      * ************************************************************************************************************************************************************************
      * ************************************************************************************************************************************************************************
      * ***** ERLAZIOAK
@@ -113,6 +123,7 @@ class Bizikleta
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
         $this->alokatua = false;
+        $this->matxuak = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function __toString()
@@ -402,5 +413,39 @@ class Bizikleta
     public function getAlokatua()
     {
         return $this->alokatua;
+    }
+
+    /**
+     * Add matxurak
+     *
+     * @param \AppBundle\Entity\Matxura $matxurak
+     *
+     * @return Bizikleta
+     */
+    public function addMatxurak(\AppBundle\Entity\Matxura $matxurak)
+    {
+        $this->matxurak[] = $matxurak;
+
+        return $this;
+    }
+
+    /**
+     * Remove matxurak
+     *
+     * @param \AppBundle\Entity\Matxura $matxurak
+     */
+    public function removeMatxurak(\AppBundle\Entity\Matxura $matxurak)
+    {
+        $this->matxurak->removeElement($matxurak);
+    }
+
+    /**
+     * Get matxurak
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMatxurak()
+    {
+        return $this->matxurak;
     }
 }

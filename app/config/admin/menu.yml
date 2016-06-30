@@ -40,6 +40,11 @@ easy_admin:
                   - { entity: 'Zigorra', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }}
                   - { entity: 'Zigorra', icon: 'th-list', label: 'Berria', params: { action: 'new' }}
 
+            - label: 'Matxurak'
+              children:
+                  - { entity: 'Matxura', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'izena' }}
+                  - { entity: 'Matxura', icon: 'th-list', label: 'Berria', params: { action: 'new' }}
+
             - { label: '', url: '#', icon: '' }
             - { label: '', url: '#', icon: '' }
             - { label: 'Informeak', route: 'informe_menua' }

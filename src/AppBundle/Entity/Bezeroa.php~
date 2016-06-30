@@ -698,4 +698,28 @@ class Bezeroa
     {
         return $this->bezerozigorra;
     }
+
+    /**
+     * Set alokatua
+     *
+     * @param boolean $alokatua
+     *
+     * @return Bezeroa
+     */
+    public function setAlokatua($alokatua)
+    {
+        $this->alokatua = $alokatua;
+
+        return $this;
+    }
+
+    /**
+     * Get alokatua
+     *
+     * @return boolean
+     */
+    public function getAlokatua()
+    {
+        return $this->alokatua;
+    }
 }
