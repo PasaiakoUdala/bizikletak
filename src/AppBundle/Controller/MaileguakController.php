@@ -39,7 +39,7 @@ class MaileguakController extends Controller
     public function hasiAction(Request $request)
     {
         $maileguak = new Maileguak();
-        $form = $this->createForm('AppBundle\Form\MaileguakHasiType', $maileguak);
+        $form = $this->createForm('AppBundle\Form\MaileguakHasiType', $maileguak);        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -220,6 +220,39 @@ class MaileguakController extends Controller
         $response->setData($names);
 
         return $response;
+    }
+
+
+    /**
+     * @Route("/setmatxura/{bizikletaid}/{matxuraid}", name="bizikleta_matxura_set")
+     */
+    public function setBizikletaMatxuraAction(Request $request, $bizikletaid, $matxuraid)
+    {
+        try {
+            $em = $this->getDoctrine()->getManager();
+
+            $bizikleta = $em->getRepository( 'AppBundle:Bizikleta' )->find( $bizikletaid );
+            $matxura = $em->getRepository( 'AppBundle:Matxura' )->find( $matxuraid );
+
+            $bizikleta->addMatxurak( $matxura );
+
+            $em->persist( $bizikleta );
+            $em->flush();
+
+            return new JsonResponse([
+                'success' => true,
+                'data'    => []
+            ]);
+        } catch (\Exception $exception) {
+
+            return new JsonResponse([
+                'success' => false,
+                'code'    => $exception->getCode(),
+                'message' => $exception->getMessage(),
+            ]);
+
+        }
+
     }
 
 

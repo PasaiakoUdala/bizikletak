@@ -2,12 +2,15 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Matxura;
+use AppBundle\Form\MatxuraType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class MaileguakHasiType extends AbstractType
 {
@@ -42,6 +45,7 @@ class MaileguakHasiType extends AbstractType
             ))
             ->add('fetxa_hasi',DatetimeType::class, array('widget' => 'single_text'))
             ->add('erabilera')
+
         ;
     }
     
