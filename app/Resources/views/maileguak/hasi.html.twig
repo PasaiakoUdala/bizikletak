@@ -19,6 +19,7 @@
     {% if zigorrak is defined %}
         <div class="col-md-3"></div>
         <div class="col-md-6">
+            <img src="{{ asset('bundles/app/img/logo.jpg') }}" alt="">
             <div id="flash-messages" class="row">
                 <div class="box-body with-border">
                     <div class="alert alert-danger alert-dismissible">
@@ -80,6 +81,15 @@
                                     {{ form_widget(form.bezeroa, {'attr': {'class': 'form-control', 'data-widget':'select2'}}) }}
                                 </div>
                             </div>
+
+                            <div class="col-xs-12">
+                                <div class="form-group  field-text">
+                                    {{ form_label(form.guneahasi, 'Hasierako gunea', { 'label_attr': {'class': 'control-label'} }) }}
+                                    {{ form_errors(form.guneahasi) }}
+                                    {{ form_widget(form.guneahasi, {'attr': {'class': 'form-control', 'data-widget':'select2'}}) }}
+                                </div>
+                            </div>
+
                             <div class="col-xs-12">
                                 <div class="form-group  field-text">
                                     {{ form_label(form.bizikleta, 'Bizikleta', { 'label_attr': {'class': 'control-label'} }) }}
@@ -96,10 +106,6 @@
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group  field-text">
-                                    {{ form_label(form.guneahasi, 'Hasierako gunea', { 'label_attr': {'class': 'control-label'} }) }}
-                                    {{ form_errors(form.guneahasi) }}
-                                    {{ form_widget(form.guneahasi, {'attr': {'class': 'form-control', 'data-widget':'select2'}}) }}
-                                </div>
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group  field-text">

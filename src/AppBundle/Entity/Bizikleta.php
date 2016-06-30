@@ -24,21 +24,21 @@ class Bizikleta
     /**
      * @var string
      *
-     * @ORM\Column(name="kodea", type="string", length=10, nullable=true, unique=true)
+     * @ORM\Column(name="kodea", type="string", length=30, nullable=true, unique=true)
      */
     private $kodea;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="erregistroa", type="string", length=10, nullable=true, unique=true)
+     * @ORM\Column(name="erregistroa", type="string", length=30, nullable=true, unique=true)
      */
     private $erregistroa;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="bastidorea", type="string", length=10, nullable=true, unique=true)
+     * @ORM\Column(name="bastidorea", type="string", length=30, nullable=true, unique=true)
      */
     private $bastidorea;
 

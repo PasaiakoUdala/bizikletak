@@ -63,8 +63,6 @@ class Barrutia
     public function __construct()
     {
         $this->purchases = new ArrayCollection();
-        $this->createdAt = new \DateTime();
-        $this->updatedAt = new \DateTime();
     }
 
     public function __toString()

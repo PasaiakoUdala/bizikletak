@@ -8,49 +8,26 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Aukeratu mailegua itzulpena gauzatzeko</h3>
+                            <h3 class="box-title">Guneak - Bizikletak</h3>
                         </div>
-
                         <div class="box-body table-responsive no-padding">
                             <table class="table table-hover">
                                 <tbody><tr>
                                     <th>Gunea</th>
                                     <th>Bizikleta Kopurua</th>
+                                    <th>Arazo Mekanikoekin</th>
                                 </tr>
                                 {% for g in guneak %}
                                     <tr>
                                         <td>{{ g.izena }}</td>
                                         <td>{% if g.bizikletak.count is defined %}{{ g.bizikletak | length }}{% endif %}</td>
-                                    </tr>
-                                {% endfor %}
-
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="box-body table-responsive no-padding">
-                            <table class="table table-hover">
-                                <tbody><tr>
-                                    <th>Kodea</th>
-                                    <th>Gunea</th>
-                                    <th>Ohar Mekanikoak</th>
-                                    <th>Maileguan</th>
-                                    <th>Ekintzak</th>
-                                </tr>
-                                {% for m in bizikletak %}
-                                    <tr>
-                                        <td>{{ m.kodea }}</td>
-                                        <td>{{ m.gunea.izena }}</td>
-                                        <td>{{ m.oharrak | raw }}</td>
-                                        {#<td>{{ m.fetxahasi|date("Y/d/m h:m") }}</td>#}
-                                        {#<td>{{  }}</td>#}
-                                        <td>
-                                            <form action="{{ path('maileguak_amaitu') }}" method="post">
-                                                <input type="hidden" name="id" value="{{ m.id }}">
-                                                <button type="submit" class="btn btn-primary">
-                                                    <i class="fa fa-search"></i> Itzuli
-                                                </button>
-                                            </form>
+                                        <td>{% set ongi=0 %}
+                                            {% if g.bizikletak.count is defined %}
+                                                {% for b in g.bizikletak if b.oharrak is not empty %}
+                                                    {% set ongi = ongi+1 %}
+                                                {% endfor %}
+                                            {% endif %}
+                                            {{ ongi }}
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -58,9 +35,33 @@
                                 </tbody>
                             </table>
                         </div>
-                        <!-- /.box-body -->
                     </div>
-                    <!-- /.box -->
+                    <div class="row">&nbsp;</div>
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Bizikletak</h3>
+                        </div>
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover">
+                                <tbody>
+                                    <tr>
+                                        <th>Mailegu Kopurua</th>
+                                        <th>Kodea</th>
+                                        <th>Ohar Mekanikoak</th>
+                                        <th>Alokatua</th>
+                                    </tr>
+                                    {% for b in bizikop %}
+                                    <tr>
+                                        <td>{{ b.mailegukop }}</td>
+                                        <td>{{ b[0].kodea }}</td>
+                                        <td>{{ b[0].oharrak | raw }}</td>
+                                        <td>{% if b[0].alokatua == true %}Bai{% else %}Ez{% endif %}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
 

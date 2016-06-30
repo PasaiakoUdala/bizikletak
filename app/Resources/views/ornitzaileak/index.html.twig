@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ornitzaileak list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Izena</th>
+                <th>Helbidea</th>
+                <th>Oharrak</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ornitzaileak in ornitzaileaks %}
+            <tr>
+                <td><a href="{{ path('ornitzaileak_show', { 'id': ornitzaileak.id }) }}">{{ ornitzaileak.id }}</a></td>
+                <td>{{ ornitzaileak.izena }}</td>
+                <td>{{ ornitzaileak.helbidea }}</td>
+                <td>{{ ornitzaileak.oharrak }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('ornitzaileak_show', { 'id': ornitzaileak.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ornitzaileak_edit', { 'id': ornitzaileak.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('ornitzaileak_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

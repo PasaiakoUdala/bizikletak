@@ -37,9 +37,36 @@ class InformeakController extends Controller
         $bizikletak = $em->getRepository('AppBundle:Bizikleta')->findAll();
         $guneak = $em->getRepository('AppBundle:Guneak')->findAll();
 
+        $repo = $this->getDoctrine()->getRepository('AppBundle:Bizikleta');
+        $query = $repo->createQueryBuilder('b')
+            ->select('b, COUNT(maileguak) AS mailegukop')
+            ->innerJoin('b.maileguak','maileguak' )
+            ->groupBy('b.id')
+            ->orderBy('mailegukop','DESC')->getQuery();
+        $bizikop=$query->getResult();
+
         return $this->render('informeak/bizikletak.html.twig', array(
             'bizikletak' => $bizikletak,
-            'guneak' => $guneak
+            'guneak' => $guneak,
+            'bizikop' => $bizikop
+        ));
+    }
+
+    /**
+     * @Route("/maileguak", name="informe_maileguak")
+     */
+    public function maileguakAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $this->getDoctrine()->getRepository('AppBundle:Maileguak');
+        $query = $repo->createQueryBuilder('m')
+            ->select('m, COUNT(maileguak) AS mailegukop')
+            ->groupBy('m.guneahasi and m.guneamaitu')
+            ->orderBy('mailegukop','DESC')->getQuery();
+        $mailegukop=$query->getResult();
+
+        return $this->render('informeak/maileguak.html.twig', array(
+            'mailegukop' => $mailegukop
         ));
 
     }
