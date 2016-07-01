@@ -235,7 +235,7 @@
 
 
         /**
-         * @Route("/setmatxura/{bizikletaid}/{matxuraid}", name="bizikleta_matxura_set")
+         * @Route("/setmatxura/{bizikletaid}/{matxuraid}", options = { "expose" = true },  name="bizikleta_matxura_set")
          */
         public function setBizikletaMatxuraAction ( Request $request, $bizikletaid, $matxuraid )
         {
@@ -271,7 +271,7 @@
         }
 
         /**
-         * @Route("/unsetmatxura/{bizikletaid}/{matxuraid}", name="bizikleta_matxura_unset")
+         * @Route("/unsetmatxura/{bizikletaid}/{matxuraid}", options = { "expose" = true },  name="bizikleta_matxura_unset")
          */
         public function unsetBizikletaMatxuraAction ( Request $request, $bizikletaid, $matxuraid )
         {
