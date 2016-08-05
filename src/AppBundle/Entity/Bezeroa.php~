@@ -46,13 +46,6 @@ class Bezeroa
     /**
      * @var bool
      *
-     * @ORM\Column(name="urtekoa", type="boolean", nullable=true)
-     */
-    private $urtekoa;
-
-    /**
-     * @var bool
-     *
      * @ORM\Column(name="ordainketa", type="boolean", nullable=true)
      */
     private $ordainketa;
@@ -72,30 +65,30 @@ class Bezeroa
     private $alokairua;
 
     /**
-     * @var bool
+     * @var float
      *
-     * @ORM\Column(name="aparkalekua", type="boolean", nullable=true)
+     * @ORM\Column(name="kopurua", type="float", nullable=true)
      */
-    private $aparkalekua;
+    private $kopurua = 0.0;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(name="kopurua", type="integer", nullable=true)
+     * @ORM\Column(name="kopurua2", type="float", nullable=true)
      */
-    private $kopurua;
+    private $kopurua2 = 0.0;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="mugikorra", type="string", length=255, nullable=true)
+     * @ORM\Column(name="mugikorra", type="string", length=255)
      */
     private $mugikorra;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
 
@@ -121,11 +114,32 @@ class Bezeroa
     private $alokatua;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="udallangilea", type="boolean", nullable=true)
+     */
+    private $udallangilea;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="baimenberezia", type="boolean", nullable=true)
+     */
+    private $baimenberezia;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="oharrak", type="string", length=255, nullable=true)
      */
     private $oharrak;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="iraungitze", type="datetime", nullable=true)
+     */
+    private $iraungitze;
 
     /**
      * @var \DateTime
@@ -182,6 +196,7 @@ class Bezeroa
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->iraungitze = null;
     }
 
     public function __toString()
@@ -272,30 +287,6 @@ class Bezeroa
     }
 
     /**
-     * Set urtekoa
-     *
-     * @param boolean $urtekoa
-     *
-     * @return Bezeroa
-     */
-    public function setUrtekoa($urtekoa)
-    {
-        $this->urtekoa = $urtekoa;
-
-        return $this;
-    }
-
-    /**
-     * Get urtekoa
-     *
-     * @return boolean
-     */
-    public function getUrtekoa()
-    {
-        return $this->urtekoa;
-    }
-
-    /**
      * Set ordainketa
      *
      * @param boolean $ordainketa
@@ -365,30 +356,6 @@ class Bezeroa
     public function getAlokairua()
     {
         return $this->alokairua;
-    }
-
-    /**
-     * Set aparkalekua
-     *
-     * @param boolean $aparkalekua
-     *
-     * @return Bezeroa
-     */
-    public function setAparkalekua($aparkalekua)
-    {
-        $this->aparkalekua = $aparkalekua;
-
-        return $this;
-    }
-
-    /**
-     * Get aparkalekua
-     *
-     * @return boolean
-     */
-    public function getAparkalekua()
-    {
-        return $this->aparkalekua;
     }
 
     /**
@@ -721,5 +688,101 @@ class Bezeroa
     public function getAlokatua()
     {
         return $this->alokatua;
+    }
+
+    /**
+     * Set iraungitze
+     *
+     * @param \DateTime $iraungitze
+     *
+     * @return Bezeroa
+     */
+    public function setIraungitze($iraungitze)
+    {
+        $this->iraungitze = $iraungitze;
+
+        return $this;
+    }
+
+    /**
+     * Get iraungitze
+     *
+     * @return \DateTime
+     */
+    public function getIraungitze()
+    {
+        return $this->iraungitze;
+    }
+
+    /**
+     * Set kopurua2
+     *
+     * @param float $kopurua2
+     *
+     * @return Bezeroa
+     */
+    public function setKopurua2($kopurua2)
+    {
+        $this->kopurua2 = $kopurua2;
+
+        return $this;
+    }
+
+    /**
+     * Get kopurua2
+     *
+     * @return float
+     */
+    public function getKopurua2()
+    {
+        return $this->kopurua2;
+    }
+
+    /**
+     * Set udallangilea
+     *
+     * @param boolean $udallangilea
+     *
+     * @return Bezeroa
+     */
+    public function setUdallangilea($udallangilea)
+    {
+        $this->udallangilea = $udallangilea;
+
+        return $this;
+    }
+
+    /**
+     * Get udallangilea
+     *
+     * @return boolean
+     */
+    public function getUdallangilea()
+    {
+        return $this->udallangilea;
+    }
+
+    /**
+     * Set baimenberezia
+     *
+     * @param boolean $baimenberezia
+     *
+     * @return Bezeroa
+     */
+    public function setBaimenberezia($baimenberezia)
+    {
+        $this->baimenberezia = $baimenberezia;
+
+        return $this;
+    }
+
+    /**
+     * Get baimenberezia
+     *
+     * @return boolean
+     */
+    public function getBaimenberezia()
+    {
+        return $this->baimenberezia;
     }
 }

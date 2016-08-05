@@ -79,7 +79,7 @@
                                 <div class="form-group  field-text">
                                     {{ form_label(form.bezeroa, 'Bezeroa', { 'label_attr': {'class': 'control-label'} }) }}
                                     {{ form_errors(form.bezeroa) }}
-                                    {{ form_widget(form.bezeroa, {'attr': {'class': 'form-control', 'data-widget':'select2'}}) }}
+                                    {{ form_widget(form.bezeroa, {'attr': {'class': 'form-control bezerocheck', 'data-widget':'select2'}}) }}
                                 </div>
                             </div>
 
@@ -215,6 +215,33 @@
                     }
                 });
             });
+
+            var $eventSelect = $(".bezerocheck");
+            $eventSelect.on("change", function (e) {
+                var miid = $(this).val();
+                var url = Routing.generate('api_bezero_iraungia');
+                console.log(url);
+                $.ajax({
+                    url: url,
+                    data: { id: miid},
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert("Errorea egon da");
+                        console.log(XMLHttpRequest);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        if ( data === 1 ) {
+                            alert("Iraungitze data gaindua dauka erabiltzaileak");
+                            return;
+                        }
+                    },
+                    type: 'POST'
+                });
+
+            });
+
 
         });
     </script>
