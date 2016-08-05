@@ -219,8 +219,10 @@
             var $eventSelect = $(".bezerocheck");
             $eventSelect.on("change", function (e) {
                 var miid = $(this).val();
+                if ( miid === "" ) {
+                    return;
+                }
                 var url = Routing.generate('api_bezero_iraungia');
-                console.log(url);
                 $.ajax({
                     url: url,
                     data: { id: miid},
@@ -231,18 +233,15 @@
                         console.log(errorThrown);
                     },
                     dataType: 'json',
-                    success: function(data) {
-                        if ( data === 1 ) {
+                    success: function(resp) {
+                        if ( resp.data === 0 ) {
                             alert("Iraungitze data gaindua dauka erabiltzaileak");
                             return;
                         }
                     },
                     type: 'POST'
                 });
-
             });
-
-
         });
     </script>
     <script type="text/javascript">
