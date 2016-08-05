@@ -95,12 +95,6 @@ class Guneak
      */
 
     /**
-     * @var Barrutia
-     * @ORM\ManyToOne(targetEntity="Barrutia", inversedBy="guneak")
-     */
-    protected $barruti;
-
-    /**
      * @var Bizikleta
      * @ORM\OneToMany(targetEntity="Bizikleta", mappedBy="guneahasi", cascade={"remove"})
      */

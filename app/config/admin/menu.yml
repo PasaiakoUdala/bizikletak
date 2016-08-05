@@ -17,11 +17,11 @@ easy_admin:
                   - { entity: 'Bizikleta', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }}
                   - { entity: 'Bizikleta', icon: 'th-list', label: 'Berria', params: { action: 'new' }}
 
-            - label: 'Barrutiak'
+            - label: 'Ibilbideak'
               icon: 'university'
               children:
-                  - { entity: 'Barrutia', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }}
-                  - { entity: 'Barrutia', icon: 'th-list', label: 'Berria', params: { action: 'new' }}
+                  - { entity: 'Ibilbidea', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'izena' }}
+                  - { entity: 'Ibilbidea', icon: 'th-list', label: 'Berria', params: { action: 'new' }}
 
             - label: 'Guneak'
               icon: 'map-marker'

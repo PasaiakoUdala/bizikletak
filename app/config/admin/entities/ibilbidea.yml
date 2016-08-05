@@ -1,10 +1,10 @@
 easy_admin:
     entities:
-        Barrutia:
-            class: AppBundle\Entity\Barrutia
-            label: 'Barrutia'
+        Ibilbidea:
+            class: AppBundle\Entity\Ibilbidea
+            label: 'Ibilbidea'
             list:
-                title: '%%entity_label%%k'
+                title: 'Ibilbidea'
                 actions:
                     - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }
