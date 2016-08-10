@@ -105,14 +105,20 @@
                                     {{ form_widget(form.fetxa_hasi, {'attr': {'class': 'form-control form_datetime', 'placeholder':'Aukeratu eguna'}}) }}
                                 </div>
                             </div>
+
                             <div class="col-xs-12">
                                 <div class="form-group  field-text">
+                                    {{ form_label(form.ibilbidea, 'Ibilbide estimatua', { 'label_attr': {'class': 'control-label'} }) }}
+                                    {{ form_errors(form.ibilbidea) }}
+                                    {{ form_widget(form.ibilbidea, {'attr': {'class': 'form-control', 'data-widget':'select2'}}) }}
+                                </div>
                             </div>
+
                             <div class="col-xs-12">
                                 <div class="form-group  field-text">
-                                    {{ form_label(form.erabilera, 'Erabilera estimatua', { 'label_attr': {'class': 'control-label'} }) }}
-                                    {{ form_errors(form.erabilera) }}
-                                    {{ form_widget(form.erabilera, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_label(form.eguraldia, 'Zer eguraldi egiten du?', { 'label_attr': {'class': 'control-label'} }) }}
+                                    {{ form_errors(form.eguraldia) }}
+                                    {{ form_widget(form.eguraldia, {'attr': {'class': 'form-control', 'data-widget':'select2'}}) }}
                                 </div>
                             </div>
 

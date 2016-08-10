@@ -9,6 +9,7 @@ easy_admin:
               children:
                   - { route: 'kudeatu_bezerozigorra_index', icon: 'th-list', label: 'Zerrenda'}
                   - { route: 'kudeatu_bezerozigorra_new', icon: 'th-list', label: 'Berria'}
+
             - { label: '', url: '#', icon: '' }
             - { label: '', url: '#', icon: '' }
             - label: 'Bizikletak'
@@ -16,12 +17,6 @@ easy_admin:
               children:
                   - { entity: 'Bizikleta', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'createdAt' }}
                   - { entity: 'Bizikleta', icon: 'th-list', label: 'Berria', params: { action: 'new' }}
-
-            - label: 'Ibilbideak'
-              icon: 'university'
-              children:
-                  - { entity: 'Ibilbidea', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'izena' }}
-                  - { entity: 'Ibilbidea', icon: 'th-list', label: 'Berria', params: { action: 'new' }}
 
             - label: 'Guneak'
               icon: 'map-marker'
@@ -46,5 +41,16 @@ easy_admin:
                   - { entity: 'Matxura', icon: 'th-list', label: 'Berria', params: { action: 'new' }}
 
             - { label: '', url: '#', icon: '' }
+            - label: 'Ibilbideak'
+              icon: 'road'
+              children:
+                  - { entity: 'Ibilbidea', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'izena' }}
+                  - { entity: 'Ibilbidea', icon: 'th-list', label: 'Berria', params: { action: 'new' }}
+            - label: 'Eguraldia'
+              icon: 'sun-o'
+              children:
+                  - { entity: 'Eguraldia', icon: 'th-list', label: 'Zerrenda', params: { sortField: 'izena' }}
+                  - { entity: 'Eguraldia', icon: 'th-list', label: 'Berria', params: { action: 'new' }}
             - { label: '', url: '#', icon: '' }
+
             - { label: 'Informeak', route: 'informe_menua' }

@@ -9,7 +9,9 @@ easy_admin:
                     - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }
                     - { name: 'delete', label: '', icon: 'trash' }
-                fields: ['id','kodea','erregistroa','bastidorea','gunea', 'alokatua']
+                fields: ['id','kodea','erregistroa','bastidorea','gunea', 'alokatua', 'matxurak']
+            show:
+                fields: ['id','kodea','erregistroa','bastidorea','gunea', 'alokatua', 'matxurak']
 
             form:
                 fields:

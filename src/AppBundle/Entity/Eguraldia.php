@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ibilbidea
+ * Eguraldia
  *
- * @ORM\Table(name="ibilbidea")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\IbilbideaRepository")
+ * @ORM\Table(name="eguraldia")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\EguraldiaRepository")
  */
-class Ibilbidea
+class Eguraldia
 {
     /**
      * @var int
@@ -28,7 +28,6 @@ class Ibilbidea
      */
     private $izena;
 
-
     /**
      * ************************************************************************************************************************************************************************
      * ************************************************************************************************************************************************************************
@@ -39,7 +38,7 @@ class Ibilbidea
 
     /**
      * @var Maileguak
-     * @ORM\OneToMany(targetEntity="Maileguak", mappedBy="ibilbidea", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Maileguak", mappedBy="eguraldia", cascade={"remove"})
      */
     protected $maileguak;
 
@@ -60,10 +59,6 @@ class Ibilbidea
      * ************************************************************************************************************************************************************************
      */
 
-
-
-
-
     /**
      * Get id
      *
@@ -79,7 +74,7 @@ class Ibilbidea
      *
      * @param string $izena
      *
-     * @return Ibilbidea
+     * @return Eguraldia
      */
     public function setIzena($izena)
     {
@@ -103,7 +98,7 @@ class Ibilbidea
      *
      * @param \AppBundle\Entity\Maileguak $maileguak
      *
-     * @return Ibilbidea
+     * @return Eguraldia
      */
     public function addMaileguak(\AppBundle\Entity\Maileguak $maileguak)
     {

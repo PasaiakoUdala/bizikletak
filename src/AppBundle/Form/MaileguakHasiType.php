@@ -21,7 +21,6 @@ class MaileguakHasiType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//            ->add('bezeroa',null, array('label' => 'form.name','required' => true, 'placeholder' => 'Aukeratu Bezeroa'))
             ->add('bezeroa', EntityType::class, array(
                 'class' => 'AppBundle:Bezeroa',
                 'query_builder' => function (EntityRepository $er) {
@@ -33,6 +32,7 @@ class MaileguakHasiType extends AbstractType
                 'placeholder' => 'Aukeratu Bezeroa'
             ))
             ->add('guneahasi',null, array('label' => 'form.name','required' => true, 'placeholder' => 'Aukeratu gunea'))
+
             ->add('bizikleta', EntityType::class, array(
                     'class' => 'AppBundle:Bizikleta',
                     'query_builder' => function (EntityRepository $er) {
@@ -44,7 +44,9 @@ class MaileguakHasiType extends AbstractType
                     'placeholder' => 'Aukeratu Bizikleta'
             ))
             ->add('fetxa_hasi',DatetimeType::class, array('widget' => 'single_text'))
-            ->add('erabilera')
+
+            ->add('ibilbidea',null, array('label' => 'form.name','required' => true, 'placeholder' => 'Aukeratu ibilbidea'))
+            ->add('eguraldia',null, array('label' => 'form.name','required' => true, 'placeholder' => 'Aukeratu Eguraldia'))
 
         ;
     }

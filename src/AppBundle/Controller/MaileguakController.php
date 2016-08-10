@@ -343,10 +343,13 @@
 //            dump($form->getErrors(true, false));
             }
 
+            $matxurak = $em->getRepository( 'AppBundle:Matxura' )->findAll();
+
             return $this->render(
                 'maileguak/amaitu.html.twig',
                 array (
                     'maileguak' => $maileguak,
+                    'matxurak' => $matxurak,
                     'form'      => $form->createView(),
                 )
             );

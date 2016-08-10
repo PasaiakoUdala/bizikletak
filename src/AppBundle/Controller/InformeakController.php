@@ -29,7 +29,7 @@ class InformeakController extends Controller
     }
 
     /**
-     * @Route("/bizikletak", name="informe_bizikletak")
+     * @Route("/zerrenda/bizikletak", name="zerrenda_bizikletak")
      */
     public function gunedatuakAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
@@ -49,6 +49,23 @@ class InformeakController extends Controller
             'bizikletak' => $bizikletak,
             'guneak' => $guneak,
             'bizikop' => $bizikop
+        ));
+    }
+
+    /**
+     * @Route("/zerrenda/matxurak", name="zerrenda_matxurak")
+     */
+    public function matxurakAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $repo = $this->getDoctrine()->getRepository('AppBundle:Bizikleta');
+        $query = $repo->createQueryBuilder('b')
+            ->innerJoin('b.matxurak','matxurak' )->getQuery();
+
+        $bizikletak=$query->getResult();
+
+        return $this->render('informeak/matxurak.html.twig', array(
+            'bizikletak' => $bizikletak
         ));
     }
 

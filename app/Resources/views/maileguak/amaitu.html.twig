@@ -78,6 +78,22 @@
 
                         </div>
 
+                        <div class="col-xs-12">
+                            <h3>matxurari berririk badu?</h3>
+                            <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#myModal">
+                                MATXURA
+                            </button>
+
+                            <br />
+                            <br />
+
+                            <div class="row divmatxuralist" style="display: none;">
+                                <p>Zehaztutako matxurak</p>
+                                <ul id="matxuralist" class="list-unstyled"></ul>
+                            </div>
+
+                        </div>
+
                     </div>
                     <!-- /.box -->
                 </div>
@@ -87,7 +103,28 @@
         {{ form_end(form) }}
     </section>
 
-
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Matxura zehaztu</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="cmbMatxura" class="form-control select2matxura">
+                        <option value="" selected="selected">Aukeratu matxura</option>
+                        {% for m in matxurak %}
+                            <option value="{{ m.id }}">{{ m.izena }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Ezeztatu</button>
+                    <button type="button" class="btn btn-primary btnMatxura">Gorde</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
 
 
@@ -98,6 +135,8 @@
 
     <script src="{{ asset('bundles/app/js/bootstrap-datetimepicker.min.js') }}"></script>
     <script src="{{ asset('bundles/app/js/bootstrap-datetimepicker.eu.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 
     <script type="text/javascript">
         $(function() {
@@ -105,6 +144,39 @@
             // Select2 widget is only enabled for the <select> elements which explicitly ask for it
             $('#main').find('form select[data-widget="select2"]').select2({
                 theme: 'bootstrap'
+            });
+
+            $('.btnMatxura').on('click', function () {
+                var bizikletaid = $('#maileguak_bizikleta').val();
+                var matxuraid = $('#cmbMatxura').val();
+                var matxuratxt = $("#cmbMatxura option:selected").text();
+
+                if (bizikletaid === "") {
+                    alert('Bizikleta aukeratu behar duzu');
+                    $("#myModal").modal('hide');
+                    return;
+                }
+
+                if (matxuraid === "") {
+                    alert('Matxura aukeratu behar duzu');
+                    return;
+                }
+
+                var url = Routing.generate('bizikleta_matxura_set', { bizikletaid: bizikletaid, matxuraid:matxuraid });
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'json',
+
+                    success: function (data) {
+                        $("#myModal").modal('hide');
+                        $('#matxuralist').append('<li>'+matxuratxt+'</li>');
+                        $('.divmatxuralist').show();
+                    },
+                    error: function (data) {
+                        alert('Errorea gertatu da matxura erregistratzerakoan');
+                    }
+                });
             });
         });
     </script>

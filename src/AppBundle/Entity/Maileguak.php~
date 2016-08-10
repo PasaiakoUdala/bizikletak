@@ -84,6 +84,18 @@ class Maileguak
     protected $bezeroa;
 
     /**
+     * @var Ibilbidea
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Ibilbidea", inversedBy="maileguak")
+     */
+    protected $ibilbidea;
+
+    /**
+     * @var Eguraldia
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Eguraldia", inversedBy="maileguak")
+     */
+    protected $eguraldia;
+
+    /**
      * @var Guneak
      * @ORM\ManyToOne(targetEntity="Guneak", inversedBy="bizikletakhasi")
      */
@@ -335,5 +347,53 @@ class Maileguak
     public function getBizikleta()
     {
         return $this->bizikleta;
+    }
+
+    /**
+     * Set ibilbidea
+     *
+     * @param \AppBundle\Entity\Ibilbidea $ibilbidea
+     *
+     * @return Maileguak
+     */
+    public function setIbilbidea(\AppBundle\Entity\Ibilbidea $ibilbidea = null)
+    {
+        $this->ibilbidea = $ibilbidea;
+
+        return $this;
+    }
+
+    /**
+     * Get ibilbidea
+     *
+     * @return \AppBundle\Entity\Ibilbidea
+     */
+    public function getIbilbidea()
+    {
+        return $this->ibilbidea;
+    }
+
+    /**
+     * Set eguraldia
+     *
+     * @param \AppBundle\Entity\Eguraldia $eguraldia
+     *
+     * @return Maileguak
+     */
+    public function setEguraldia(\AppBundle\Entity\Eguraldia $eguraldia = null)
+    {
+        $this->eguraldia = $eguraldia;
+
+        return $this;
+    }
+
+    /**
+     * Get eguraldia
+     *
+     * @return \AppBundle\Entity\Eguraldia
+     */
+    public function getEguraldia()
+    {
+        return $this->eguraldia;
     }
 }

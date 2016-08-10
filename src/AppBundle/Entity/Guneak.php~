@@ -46,13 +46,6 @@ class Guneak
     /**
      * @var string
      *
-     * @ORM\Column(name="barrutia", type="string", length=255, nullable=true)
-     */
-    private $barrutia;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="kudeatzailea", type="string", length=255)
      */
     private $kudeatzailea;
@@ -224,30 +217,6 @@ class Guneak
     }
 
     /**
-     * Set barrutia
-     *
-     * @param string $barrutia
-     *
-     * @return Guneak
-     */
-    public function setBarrutia($barrutia)
-    {
-        $this->barrutia = $barrutia;
-
-        return $this;
-    }
-
-    /**
-     * Get barrutia
-     *
-     * @return string
-     */
-    public function getBarrutia()
-    {
-        return $this->barrutia;
-    }
-
-    /**
      * Set kudeatzailea
      *
      * @param string $kudeatzailea
@@ -365,30 +334,6 @@ class Guneak
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * Set barruti
-     *
-     * @param \AppBundle\Entity\Barrutia $barruti
-     *
-     * @return Guneak
-     */
-    public function setBarruti(\AppBundle\Entity\Barrutia $barruti = null)
-    {
-        $this->barruti = $barruti;
-
-        return $this;
-    }
-
-    /**
-     * Get barruti
-     *
-     * @return \AppBundle\Entity\Barrutia
-     */
-    public function getBarruti()
-    {
-        return $this->barruti;
     }
 
     /**
