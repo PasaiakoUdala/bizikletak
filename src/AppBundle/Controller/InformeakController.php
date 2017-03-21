@@ -7,10 +7,15 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\AppBundle;
+use AppBundle\Entity\Maileguak;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 /**
  * BezeroZigorra controller.
@@ -69,21 +74,59 @@ class InformeakController extends Controller
         ));
     }
 
+
+
     /**
-     * @Route("/maileguak", name="informe_maileguak")
+     * @Route("/zerrenda/maileguak", name="informe_maileguak")
      */
     public function maileguakAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
 
-        $repo = $this->getDoctrine()->getRepository('AppBundle:Maileguak');
-        $query = $repo->createQueryBuilder('m')
-            ->select('m, COUNT(maileguak) AS mailegukop')
-            ->groupBy('m.guneahasi and m.guneamaitu')
-            ->orderBy('mailegukop','DESC')->getQuery();
-        $mailegukop=$query->getResult();
+        $guneak = $em->getRepository('AppBundle:Guneak')->findAll();
+
+        $maileguak = new Maileguak();
+        $form = $this->createForm(
+            'AppBundle\Form\MaileguakFindType',
+            $maileguak, array(
+            'action' => $this->generateUrl('informe_maileguak'),
+            'method' => 'POST',
+        ));
+
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            /** @var  $query \Doctrine\DBAL\Query\QueryBuilder */
+            $query = $em->createQuery("
+                SELECT m
+                  FROM AppBundle:Maileguak m
+            ");
+
+
+            foreach ($data as $key => $value ) {
+
+                $query ->andWhere($query->expr()->eq('i.'.$field, ':i_'.$field))
+                    ->setParameter('i_'.$field, $value);
+            }
+
+            //dump($query->getSQL());
+            $maileguak = $query->getResult();
+        } else {
+            /** @var  $query \Doctrine\DBAL\Query\QueryBuilder */
+            $query = $em->createQuery("
+                SELECT m
+                  FROM AppBundle:Maileguak m
+            ");
+
+            $maileguak = $query->getResult();
+
+        }
+
 
         return $this->render('informeak/maileguak.html.twig', array(
-            'mailegukop' => $mailegukop
+            'maileguak' => $maileguak,
+            'guneak'    => $guneak,
+            'form'      => $form->createView()
         ));
 
     }

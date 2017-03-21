@@ -1,9 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block main %}
-    {% if bizikletak is defined %}
-        <section id="emaitzak" class="content">
+{% block head_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/buttons.dataTables.min.css') }}">
+{% endblock %}
 
+{% block main %}
+    {% if maileguak is defined %}
+        <section id="emaitzak" class="content">
+            {#<div class="row">#}
+                {#<div class="col-md-12">#}
+                    {#<button id="exportButton" class="btn btn-lg btn-danger clearfix"><span class="fa fa-file-excel-o"></span> Excel-era esportatu</button>#}
+                {#</div>#}
+            {#</div>#}
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
@@ -11,19 +21,30 @@
                             <h3 class="box-title">Bizikletak</h3>
                         </div>
                         <div class="box-body table-responsive no-padding">
-                            <table class="table table-hover">
-                                <tbody>
+                            <table id="datuakTaula" class="table table-hover">
+                                <thead>
                                 <tr>
-                                    <th>Nondik</th>
-                                    <th>Nora</th>
-                                    <th>Zenbat</th>
+                                    <th>Num</th>
+                                    <th>Fetxa hasi</th>
+                                    <th>Fetxa amaitu</th>
+                                    <th>Gunea Hasi</th>
+                                    <th>Gunea Amaitu</th>
+                                    <th>Bizikleta</th>
+                                    <th>Ibilbidea</th>
+                                    <th>Eguraldia</th>
                                 </tr>
-                                {% for b in mailegukop %}
+                                </thead>
+                                <tbody>
+                                {% for m in maileguak %}
                                     <tr>
-                                        <td>{{ b.mailegukop }}</td>
-                                        <td>{{ b[0].kodea }}</td>
-                                        <td>{{ b[0].oharrak | raw }}</td>
-                                        <td>{% if b[0].alokatua == true %}Bai{% else %}Ez{% endif %}</td>
+                                        <td>{{ loop.index }}</td>
+                                        <td>{{ m.fetxaHasi | date('Y-m-d') }}</td>
+                                        <td>{{ m.fetxaAmaitu | date('Y-m-d') }}</td>
+                                        <td>{{ m.guneahasi }}</td>
+                                        <td>{{ m.guneaamaitu }}</td>
+                                        <td>{{ m.bizikleta }}</td>
+                                        <td>{{ m.ibilbidea }}</td>
+                                        <td>{{ m.eguraldia }}</td>
                                     </tr>
                                 {% endfor %}
                                 </tbody>
@@ -37,3 +58,52 @@
     {% endif %}
 {% endblock %}
 
+{% block body_javascript %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/app/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/jszip.min.js') }}"></script>
+    <script>
+        $(document).ready( function () {
+            $('#datuakTaula').DataTable(
+                {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        {
+                            extend: 'excelHtml5',
+                            title: 'Datuak'
+                        }
+                    ],
+                    "language": {
+                        "sProcessing":     "Prozesatzen...",
+                        "sLengthMenu":     "Erakutsi _MENU_ erregistro",
+                        "sZeroRecords":    "Ez da emaitzarik aurkitu",
+                        "sEmptyTable":     "Taula hontan ez dago inongo datu erabilgarririk",
+                        "sInfo":           "_START_ -etik _END_ -erako erregistroak erakusten, guztira _TOTAL_ erregistro",
+                        "sInfoEmpty":      "0tik 0rako erregistroak erakusten, guztira 0 erregistro",
+                        "sInfoFiltered":   "(guztira _MAX_ erregistro iragazten)",
+                        "sInfoPostFix":    "",
+                        "sSearch":         "Aurkitu:",
+                        "sUrl":            "",
+                        "sInfoThousands":  ",",
+                        "sLoadingRecords": "Abiarazten...",
+                        "oPaginate": {
+                            "sFirst":    "Lehena",
+                            "sLast":     "Azkena",
+                            "sNext":     "Hurrengoa",
+                            "sPrevious": "Aurrekoa"
+                        },
+                        "oAria": {
+                            "sSortAscending":  ": Zutabea goranzko eran ordenatzeko aktibatu ",
+                            "sSortDescending": ": Zutabea beheranzko eran ordenatzeko aktibatu"
+                        }
+                    }
+                }
+            );
+        } );
+    </script>
+
+{% endblock %}
