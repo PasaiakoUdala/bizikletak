@@ -74,8 +74,6 @@ class InformeakController extends Controller
         ));
     }
 
-
-
     /**
      * @Route("/zerrenda/maileguak", name="informe_maileguak")
      */
@@ -127,6 +125,20 @@ class InformeakController extends Controller
             'maileguak' => $maileguak,
             'guneak'    => $guneak,
             'form'      => $form->createView()
+        ));
+
+    }
+
+    /**
+     * @Route("/zerrenda/bazkideak", name="informe_bezeroak")
+     */
+    public function bezeroakAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        $bezeroak = $em->getRepository('AppBundle:Bezeroa')->findAll();
+        //dump($bezeroak);
+        return $this->render('informeak/bezeroak.html.twig', array(
+            'bezeroak' => $bezeroak
         ));
 
     }

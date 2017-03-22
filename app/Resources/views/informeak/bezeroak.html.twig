@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block head_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/buttons.dataTables.min.css') }}">
+{% endblock %}
+
+{% block main %}
+    {% if bezeroak is defined %}
+        <section id="emaitzak" class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Bizikletak</h3>
+                        </div>
+                        <div class="box-body table-responsive no-padding">
+                            <table id="datuakTaula" class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Num</th>
+                                    <th>Izena</th>
+                                    <th>NAN</th>
+                                    <th>Bazkidea</th>
+                                    <th>Ordaindua</th>
+                                    <th>Pasaitarra</th>
+                                    <th>Mugikorra</th>
+                                    <th>Emaila</th>
+                                    <th>Helbidea</th>
+                                    <th>Udal Langilea</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for m in bezeroak %}
+                                    <tr>
+                                        <td>{{ loop.index }}</td>
+                                        <td>{{ m.izena }}</td>
+                                        <td>{{ m.nan }}</td>
+                                        <td>{{ m.bazkidea }}</td>
+                                        <td>{{ m.ordainketa }}</td>
+                                        <td>{{ m.pasaitarra }}</td>
+                                        <td>{{ m.mugikorra }}</td>
+                                        <td>{{ m.email }}</td>
+                                        <td>{{ m.helbidea }}</td>
+                                        <td>{{ m.udallangilea }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    {% endif %}
+{% endblock %}
+
+{% block body_javascript %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/app/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('bundles/app/js/jszip.min.js') }}"></script>
+    <script>
+        $(document).ready( function () {
+            $('#datuakTaula').DataTable(
+                {
+                    dom: 'Bfrtip',
+                    buttons: [
+                        {
+                            extend: 'excelHtml5',
+                            title: 'Datuak'
+                        }
+                    ],
+                    "language": {
+                        "sProcessing":     "Prozesatzen...",
+                        "sLengthMenu":     "Erakutsi _MENU_ erregistro",
+                        "sZeroRecords":    "Ez da emaitzarik aurkitu",
+                        "sEmptyTable":     "Taula hontan ez dago inongo datu erabilgarririk",
+                        "sInfo":           "_START_ -etik _END_ -erako erregistroak erakusten, guztira _TOTAL_ erregistro",
+                        "sInfoEmpty":      "0tik 0rako erregistroak erakusten, guztira 0 erregistro",
+                        "sInfoFiltered":   "(guztira _MAX_ erregistro iragazten)",
+                        "sInfoPostFix":    "",
+                        "sSearch":         "Aurkitu:",
+                        "sUrl":            "",
+                        "sInfoThousands":  ",",
+                        "sLoadingRecords": "Abiarazten...",
+                        "oPaginate": {
+                            "sFirst":    "Lehena",
+                            "sLast":     "Azkena",
+                            "sNext":     "Hurrengoa",
+                            "sPrevious": "Aurrekoa"
+                        },
+                        "oAria": {
+                            "sSortAscending":  ": Zutabea goranzko eran ordenatzeko aktibatu ",
+                            "sSortDescending": ": Zutabea beheranzko eran ordenatzeko aktibatu"
+                        }
+                    }
+                }
+            );
+        } );
+    </script>
+
+{% endblock %}
