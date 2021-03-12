@@ -9,10 +9,10 @@ easy_admin:
                     - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }
                     - { name: 'delete', label: '', icon: 'trash' }
-                fields: ['id','izena', 'helbidea', 'ordutegia', 'barruti', 'kudeatzailea']
+                fields: ['id','izena', 'helbidea', 'ordutegia',  'kudeatzailea']
 
             show:
-                fields: ['id','izena', 'helbidea', 'ordutegia', 'barruti', 'kudeatzailea']
+                fields: ['id','izena', 'helbidea', 'ordutegia', 'kudeatzailea']
 
             form:
                 fields:
@@ -21,7 +21,6 @@ easy_admin:
                     - latitude
                     - longitude
                     - ordutegia
-                    - { property: 'barruti', label: 'Barrutia' , type_options: { placeholder: 'Aukeratu barrutia...' } }
                     - kudeatzailea
 
 
